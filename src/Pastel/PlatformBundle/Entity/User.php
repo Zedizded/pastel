@@ -30,7 +30,15 @@ class User extends BaseUser
      *
      * @ORM\Column(name="lastName", type="text", length=255)
      */
-    private $lastName;    
+    private $lastName; 
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="pastelMember", type="boolean")
+     */
+    private $pastelMember;
+    
     
     public function __construct()
     {
@@ -85,5 +93,29 @@ class User extends BaseUser
     public function getLastName()
     {
         return $this->lastName;
+    }
+
+    /**
+     * Set pastelMember
+     *
+     * @param boolean $pastelMember
+     *
+     * @return User
+     */
+    public function setPastelMember($pastelMember)
+    {
+        $this->pastelMember = $pastelMember;
+
+        return $this;
+    }
+
+    /**
+     * Get pastelMember
+     *
+     * @return boolean
+     */
+    public function getPastelMember()
+    {
+        return $this->pastelMember;
     }
 }

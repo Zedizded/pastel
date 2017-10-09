@@ -14,3 +14,7 @@ services:
         # if you need to do this, you can override this setting on individual services
         public: false
 
+    app.form.registration:
+        class: Pastel\PlatformBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }
