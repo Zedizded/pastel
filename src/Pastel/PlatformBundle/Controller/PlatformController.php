@@ -4,7 +4,7 @@ namespace Pastel\PlatformBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class PlatformController extends Controller
 {
     public function indexAction()
     {
