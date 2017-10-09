@@ -5,6 +5,7 @@ namespace Pastel\PlatformBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 
 class RegistrationType extends AbstractType
@@ -13,7 +14,11 @@ class RegistrationType extends AbstractType
     {
         $builder
             ->add('firstName', TextType::class, array('label' => 'Prénom'))
-            ->add('lastName', TextType::class, array('label' => 'Nom'));
+            ->add('lastName', TextType::class, array('label' => 'Nom'))
+            ->add('naturalist', CheckboxType::class, array(
+                'label'    => 'Membre Pastel',
+                'required' => false,
+            ));
     }
 
     public function getParent()
