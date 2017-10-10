@@ -1,0 +1,13 @@
+{# src/Pastel/PlatformBundle/Resources/views/Default/blog.html.twig #}
+{% extends "PastelPlatformBundle::layout.html.twig" %}
+
+
+{% block body %}
+	
+	{% for article in articles %}
+		<h3>{{ article.title }}</h3>
+		<p>{{ article.content }}</p>
+		<p><a href="{{ path('pastel_platform_article', { 'id': article.id }) }}">Aperçu</a></p>
+	{% endfor %}
+		
+{% endblock %}

@@ -18,6 +18,20 @@ class PlatformController extends Controller
 	{
 		return $this->render('PastelPlatformBundle:Default:index.html.twig');
 	}
+    
+	/**
+     * @Route("/blog", name="pastel_platform_blog")
+     */
+	public function blogAction()
+	{
+		$em = $this->getDoctrine()->getManager();
+
+		$articles = $em->getRepository('PastelPlatformBundle:Article')->findAll();
+
+		return $this->render('PastelPlatformBundle:Default:blog.html.twig', array(
+			'articles' => $articles,
+			));
+	}    
 
 	/**
      * @Route("/creation", name="pastel_platform_creation")
@@ -67,6 +81,17 @@ class PlatformController extends Controller
 
 		return $this->render('PastelPlatformBundle:Default:edition.html.twig', array(
 			'form' => $form->createView(),
+			));
+	}    
+    
+	/**
+     * @Route("/article/{id}", name="pastel_platform_article")
+     */
+	public function articleAction(article $article, $id)
+	{
+
+		return $this->render('PastelPlatformBundle:Default:article.html.twig', array(
+			'article' => $article
 			));
 	}    
 }
