@@ -5,9 +5,11 @@ namespace Pastel\PlatformBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Pastel\PlatformBundle\Entity\Article;
 use Pastel\PlatformBundle\Entity\User;
+use Pastel\PlatformBundle\Entity\Article;
+use Pastel\PlatformBundle\Entity\Comment;
 use Pastel\PlatformBundle\Form\ArticleType;
+use Pastel\PlatformBundle\Form\CommentType;
 
 class PlatformController extends Controller
 {	
@@ -29,69 +31,94 @@ class PlatformController extends Controller
 		$articles = $em->getRepository('PastelPlatformBundle:Article')->findAll();
 
 		return $this->render('PastelPlatformBundle:Default:blog.html.twig', array(
-			'articles' => $articles,
+			'articles' => $articles
 			));
 	}    
 
 	/**
-     * @Route("/creation", name="pastel_platform_creation")
+     * @Route("/blog/creation", name="pastel_platform_creation")
      */
     public function creationAction(Request $request)
 	{
-		$article = new Article();
-		$form   = $this->get('form.factory')->create(ArticleType::class, $article);
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
 
-		if ($request->isMethod('POST')) {
-			
-			$form->handleRequest($request);
-
-			if ($form->isValid()) {
+            $article = new Article();
+			$form = $this->get('form.factory')->create(ArticleType::class, $article);
+            
+            if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
 				$article->setUser( $this->getUser());
 
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($article);
 				$em->flush();
+                
+                $request->getSession()->getFlashBag()->add('info', 'Votre article a bien été enregistrée.');
 			}
+            
+            return $this->render('PastelPlatformBundle:Default:creation.html.twig', array(
+				'form' => $form->createView()
+				));
 		}
 
-		return $this->render('PastelPlatformBundle:Default:creation.html.twig', array(
-			'form' => $form->createView(),
-			));
+		return $this->redirectToRoute('pastel_platform_homepage');
 	}
     
 	/**
-     * @Route("/edition/{id}", name="pastel_platform_edition")
+     * @Route("/blog/edition/{id}", name="pastel_platform_edition")
      */
 	public function editionAction(Request $request,article $article, $id)
 	{
 		
-		$form   = $this->get('form.factory')->create(ArticleType::class, $article);
-
-		if ($request->isMethod('POST')) {
+		if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
 			
-			$form->handleRequest($request);
+			$form = $this->get('form.factory')->create(ArticleType::class, $article);
 
-			if ($form->isValid()) {
+			if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
 				$em = $this->getDoctrine()->getManager();
 				$em->flush();
+                
+                $request->getSession()->getFlashBag()->add('info', 'Votre commentaire a bien été enregistrée.');
 			}
-		}
 
-		return $this->render('PastelPlatformBundle:Default:edition.html.twig', array(
-			'form' => $form->createView(),
-			));
-	}    
+            return $this->render('PastelPlatformBundle:Default:edition.html.twig', array(
+				'form' => $form->createView()
+				));
+		}
+		return $this->redirectToRoute('pastel_platform_homepage');
+	}
     
 	/**
-     * @Route("/article/{id}", name="pastel_platform_article")
+     * @Route("/blog/article/{id}", name="pastel_platform_article")
      */
-	public function articleAction(article $article, $id)
+	public function articleAction(Request $request, article $article, $id)
 	{
 
+		$comment = new Comment();
+		$form = $this->get('form.factory')->create(CommentType::class, $comment);
+
+		$em = $this->getDoctrine()->getManager();
+
+		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+			$comment->setUser( $this->getUser());
+			$comment->setArticle($article);
+            
+			$em->persist($comment);
+			$em->flush();
+			
+			// Clears the form
+			$comment = new Comment();
+			$form = $this->get('form.factory')->create(CommentType::class, $comment);
+		}
+
+		$comments = $em->getRepository('PastelPlatformBundle:Comment')->findBY(array('article' => $article));        
+
 		return $this->render('PastelPlatformBundle:Default:article.html.twig', array(
-			'article' => $article
+            'form' => $form->createView(),
+			'article' => $article,
+			'comments' => $comments
 			));
 	}    
 }

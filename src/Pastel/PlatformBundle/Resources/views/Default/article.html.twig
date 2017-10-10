@@ -3,9 +3,38 @@
 
 
 {% block body %}
-	
-		<h3>{{ article.title }}</h3>
-		<p>{{ article.datePost|date('d/m/Y H:i') }}</p>
-		<p>{{ article.content }}</p>
-		
+
+	<h3>{{ article.title }}</h3>
+	<p>{{ article.datePost|date('d/m/Y H:i') }}</p>
+	<p>{{ article.content }}</p>
+
+	{% if is_granted('ROLE_USER') %}
+		<div>
+			{{ form_start(form) }}
+
+			{{ form_errors(form) }}
+
+			{{ form_row(form.content) }}
+
+			<input type="submit" value="enregistrer">
+
+			{{ form_rest(form) }}
+
+			{{ form_end(form) }}
+		</div>
+	{% else %}
+		<p><a href="{{ path('fos_user_security_login') }}" >Connectez-vous</a> ou <a href="{{ path('fos_user_registration_register')}}">inscrivez-vous</a> pour poster un commentaire</p>
+	{% endif %}
+
+	{% if comments is not empty %}
+		<h4>Commentaires</h4>
+		{% for comment in comments %}
+			<div>
+				<p>{{ comment.user.username }}</p>
+				<p>{{ comment.datePost|date('d/m/Y H:i') }}</p>
+				<p>{{ comment.content }}</p>
+			</div>
+		{% endfor %}
+	{% endif %}
+    
 {% endblock %}
