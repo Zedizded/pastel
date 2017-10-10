@@ -4,6 +4,7 @@ namespace Pastel\PlatformBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -39,11 +40,22 @@ class User extends BaseUser
      */
     private $pastelMember;
     
+    /**
+     * @ORM\OneToMany(targetEntity="Pastel\PlatformBundle\Entity\Article", mappedBy="user")
+     */
+     private $articles;
+ 
+     /**
+     * @ORM\OneToMany(targetEntity="Pastel\PlatformBundle\Entity\Comment", mappedBy="user")
+     */
+     private $comments;    
+    
     
     public function __construct()
     {
         parent::__construct();
-        
+        $this->articles = new ArrayCollection();
+        $this->comments = new ArrayCollection();        
         $this->roles[] = 'ROLE_USER';
     }
 
@@ -94,4 +106,96 @@ class User extends BaseUser
     {
         return $this->lastName;
     }
+
+    /**
+     * Set pastelMember
+     *
+     * @param boolean $pastelMember
+     *
+     * @return User
+     */
+    public function setPastelMember($pastelMember)
+    {
+        $this->pastelMember = $pastelMember;
+
+        return $this;
+    }
+
+    /**
+     * Get pastelMember
+     *
+     * @return boolean
+     */
+    public function getPastelMember()
+    {
+        return $this->pastelMember;
+    }
+    
+    /**
+     * Add article
+     *
+     * @param \Pastel\PlatformBundle\Entity\Article $article
+     *
+     * @return User
+     */
+    public function addArticle(\Pastel\PlatformBundle\Entity\Article $article)
+    {
+        $this->articles[] = $article;
+
+        return $this;
+    }
+
+    /**
+     * Remove article
+     *
+     * @param \Pastel\PlatformBundle\Entity\Article $article
+     */
+    public function removeArticle(\Pastel\PlatformBundle\Entity\Article $article)
+    {
+        $this->articles->removeElement($article);
+    }
+
+    /**
+     * Get articles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \Pastel\PlatformBundle\Entity\Comment $comment
+     *
+     * @return User
+     */
+    public function addComment(\Pastel\PlatformBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \Pastel\PlatformBundle\Entity\Comment $comment
+     */
+    public function removeComment(\Pastel\PlatformBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }    
 }
