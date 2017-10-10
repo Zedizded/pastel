@@ -2,3 +2,8 @@ pastel_platform_homepage:
     path:     /
     defaults: 
         _controller: PastelPlatformBundle:Platform:index
+
+pastel_platform_creation:
+    path:     /creation
+    defaults:
+        _controller: PastelPlatformBundle:Platform:creation
