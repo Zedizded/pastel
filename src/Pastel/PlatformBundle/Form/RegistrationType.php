@@ -15,7 +15,7 @@ class RegistrationType extends AbstractType
         $builder
             ->add('firstName', TextType::class, array('label' => 'Prénom'))
             ->add('lastName', TextType::class, array('label' => 'Nom'))
-            ->add('naturalist', CheckboxType::class, array(
+            ->add('pastelMember', CheckboxType::class, array(
                 'label'    => 'Membre Pastel',
                 'required' => false,
             ));

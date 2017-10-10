@@ -46,7 +46,12 @@ class Comment
      * @ORM\JoinColumn(nullable=false)
      */
     private $article;
-
+    
+    
+    public function __construct()
+    {
+        $this->datePost = new Datetime();
+    }
 
     /**
      * Get id

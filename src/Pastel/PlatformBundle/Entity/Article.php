@@ -50,15 +50,16 @@ class Article
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="Pastel\PlatformBundle\Entity\Comment", mappedBy="article")
+     * @ORM\OneToMany(targetEntity="Pastel\PlatformBundle\Entity\Comment", mappedBy="article", cascade={"remove"})
      */
     private $comments;
+    
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->datePost = new Datetime();
     }
-
 
     /**
      * Get id
