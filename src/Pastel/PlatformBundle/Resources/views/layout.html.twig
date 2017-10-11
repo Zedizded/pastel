@@ -25,9 +25,14 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">lien</a></li>
-            <li><a href="#">lien</a></li>
-            <li><a href="{{ path('pastel_platform_blog') }}">Actualités</a></li>
+            <li><a href="{{ path('pastel_platform_blog') }}">Blog</a></li>
+            {% if is_granted('ROLE_USER') %}
+                <li><a href="{{ path('fos_user_profile_show') }}">Mon profil</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a></li>
+            {% else %}    
+                <li><a href="{{ path('fos_user_security_login') }}">Se connecter</a></li>
+                <li><a href="{{ path('fos_user_registration_register')}}">S'inscrire</a></li>
+          {% endif %}        
         </ul>
       </div>
     </div>
@@ -35,6 +40,7 @@
 
   <div class="container">
     {% block body %}
+        {% block fos_user_content %}{% endblock %}
     {% endblock %}
   </div>
   

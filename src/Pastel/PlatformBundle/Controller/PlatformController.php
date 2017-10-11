@@ -67,7 +67,7 @@ class PlatformController extends Controller
 	/**
      * @Route("/blog/edition/{id}", name="pastel_platform_edition")
      */
-	public function editionAction(Request $request,article $article, $id)
+	public function editionAction(Request $request, Article $article, $id)
 	{
 		
 		if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
@@ -92,7 +92,7 @@ class PlatformController extends Controller
 	/**
      * @Route("/blog/article/{id}", name="pastel_platform_article")
      */
-	public function articleAction(Request $request, article $article, $id)
+	public function articleAction(Request $request, Article $article, $id)
 	{
 
 		$comment = new Comment();
@@ -125,7 +125,7 @@ class PlatformController extends Controller
 	/**
      * @Route("/blog/comment/{id}", name="pastel_platform_signalComment")
      */
-	public function signalCommentAction(Comment $comment, $id)
+	public function signalCommentAction(Request $request, Comment $comment, $id)
 	{
 		$em = $this->getDoctrine()->getManager();
 
@@ -135,6 +135,68 @@ class PlatformController extends Controller
 		$request->getSession()->getFlashBag()->add('info', 'Le commentaire a bien été signalé.');
 
 		return $this->redirectToRoute('pastel_platform_article', array('id' => $comment->getArticle()->getId()));
+
+	}    
+    
+/**
+     * @Route("/blog/suppression/{id}", name="pastel_platform_suppression")
+     */
+	public function suppressionAction(Request $request, Article $article, $id)
+	{
+		if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+			
+			$em = $this->getDoctrine()->getManager();
+
+			$em->remove($article);
+			$em->flush();
+
+			$request->getSession()->getFlashBag()->add('info', "L'article a bien été supprimer");
+
+			return $this->redirectToRoute('fos_user_profile_show');
+		}
+		return $this->redirectToRoute('pastel_platform_homepage');
+
+	}
+
+	/**
+     * @Route("/blog/commentValidation/{id}", name="pastel_platform_commentValidation")
+     */
+	public function commentValidationAction(Request $request, Comment $comment, $id)
+	{
+		if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+			
+			$em = $this->getDoctrine()->getManager();
+
+			$comment->setWarning(false);
+			$em->flush();
+
+			$request->getSession()->getFlashBag()->add('info', "Le commentaire a bien été validé");
+
+			return $this->redirectToRoute('fos_user_profile_show');
+		}
+
+		return $this->redirectToRoute('pastel_platform_homepage');
+
+	}
+
+	/**
+     * @Route("/blog/commentSuppression/{id}", name="pastel_platform_commentSuppression")
+     */
+	public function commentSuppressionAction(Request $request, Comment $comment, $id)
+	{
+		if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+			
+			$em = $this->getDoctrine()->getManager();
+
+			$em->remove($comment);
+			$em->flush();
+
+			$request->getSession()->getFlashBag()->add('info', "Le commentaire a bien été supprimé");
+
+			return $this->redirectToRoute('fos_user_profile_show');
+		}
+
+		return $this->redirectToRoute('pastel_platform_homepage');
 
 	}    
 }

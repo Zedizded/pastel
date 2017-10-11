@@ -1,6 +1,99 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-</div>
+	{% for message in app.session.flashbag.get('info') %}
+		<p>{{ message }}</p>
+	{% endfor %}
+	
+	<div class="fos_user_user_show">
+		<p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+		<p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+
+		<p><a href="{{ path('fos_user_profile_edit') }}">modifier mes informations</a></p>
+		<p><a href="{{ path('fos_user_change_password') }}">modifier mon mot de passe</a></p>
+	</div>
+
+	{% if is_granted('ROLE_ADMIN') %}
+
+		<h3>blog</h3>
+		<p><a href="{{ path('pastel_platform_creation')}}">créer un article</a></p>
+		<table class="table table-responsive">
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for article in articles %}
+					<tr>
+						<td>{{ article.title }}</td>
+						<td>
+							<a href="{{ path('pastel_platform_article', { 'id': article.id }) }}" class="btn btn-primary btn-xs" title="Voir"><span class="glyphicon glyphicon-search"></span></a>
+							<a href="{{ path('pastel_platform_edition', { 'id': article.id }) }}" class="btn btn-primary btn-xs" title="Editer"><span class="glyphicon glyphicon-edit"></span></a>
+							<button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#articleDialog{{ article.id }}"><span class="glyphicon glyphicon-remove"></span></button>
+						</td>
+					</tr>
+					<div class="modal fade" id="articleDialog{{ article.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="myModalLabel">Confirmation requise</h4>
+								</div>
+								<div class="modal-body">
+									Voulez vous supprimer cette article ?
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+									<a href="{{ path('pastel_platform_suppression', { 'id': article.id }) }}" class="btn btn-danger">Confirmer</a>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<h3>commentaires signalés</h3>
+		{% if comments is empty %}
+			aucun commentaire signalé
+		{% else %}
+			<table class="table table-responsive">
+				<thead>
+					<tr>
+						<th>Commentaire</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for comment in comments %}
+						<tr>
+							<td>{{ comment.content }}</td>
+							<td>
+								<a href="{{ path('pastel_platform_article', { 'id': comment.article.id }) }}" class="btn btn-primary btn-xs" title="Voir"><span class="glyphicon glyphicon-search"></span></a>
+								<a href="{{ path('pastel_platform_commentValidation', { 'id': comment.id }) }}" class="btn btn-primary btn-xs" title="Editer"><span class="glyphicon glyphicon-ok"></span></a>
+								<button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#articleDialog{{ comment.id }}"><span class="glyphicon glyphicon-remove"></span></button>
+							</td>
+						</tr>
+						<div class="modal fade" id="articleDialog{{ comment.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h4 class="modal-title" id="myModalLabel">Confirmation requise</h4>
+									</div>
+									<div class="modal-body">
+										Voulez vous supprimer ce commentaire ?
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+										<a href="{{ path('pastel_platform_commentSuppression', { 'id': comment.id }) }}" class="btn btn-danger">Confirmer</a>
+									</div>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endif %}
+	{% endif %}
