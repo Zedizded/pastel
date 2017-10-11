@@ -23,6 +23,14 @@
 		{{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
 	</div>
 	
+	<div class="form-group">
+		{{ form_widget(form.articlePicture) }}
+	</div>
+
+	{% if article.articlePicture.id is not null %}
+		<p><a href="{{ path('pastel_platform_pictureSuppression', { 'id': article.articlePicture.id , 'articleId': article.id })}}">Supprimer l'image</a></p>
+	{% endif %}	
+	
   <input type="submit" value="enregistrer" class="btn btn-default">
 
     {{ form_rest(form) }}

@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Pastel\PlatformBundle\Entity\User;
 use Pastel\PlatformBundle\Entity\Article;
+use Pastel\PlatformBundle\Entity\ArticlePicture;
 use Pastel\PlatformBundle\Entity\Comment;
 use Pastel\PlatformBundle\Form\ArticleType;
 use Pastel\PlatformBundle\Form\CommentType;
@@ -32,7 +33,7 @@ class PlatformController extends Controller
 
 		return $this->render('PastelPlatformBundle:Default:blog.html.twig', array(
 			'articles' => $articles
-			));
+        ));
 	}    
 
 	/**
@@ -47,18 +48,30 @@ class PlatformController extends Controller
             
             if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
-				$article->setUser( $this->getUser());
-
 				$em = $this->getDoctrine()->getManager();
+                
+				$article->setUser($this->getUser());
 				$em->persist($article);
+                
+				$articlePicture = $article->getArticlePicture();
+				if ($articlePicture !== null)
+				{
+					$articlePicture->setAlt($article->getTitle());
+					$articlePicture->setRandom(rand());
+					$em->persist($articlePicture);
+				}       
+                
 				$em->flush();
                 
                 $request->getSession()->getFlashBag()->add('info', 'Votre article a bien été enregistrée.');
+                
+                $article = new Article();
+                $form = $this->get('form.factory')->create(ArticleType::class, $article);
 			}
             
             return $this->render('PastelPlatformBundle:Default:creation.html.twig', array(
 				'form' => $form->createView()
-				));
+            ));
 		}
 
 		return $this->redirectToRoute('pastel_platform_homepage');
@@ -77,14 +90,24 @@ class PlatformController extends Controller
 			if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
 				$em = $this->getDoctrine()->getManager();
+                $articlePicture = $article->getArticlePicture();
+
+				if ($articlePicture !== null)
+				{
+					$articlePicture->setRandom(rand());
+					$articlePicture->setAlt($article->getTitle());
+					$em->persist($articlePicture);
+				}
+                
 				$em->flush();
                 
-                $request->getSession()->getFlashBag()->add('info', 'Votre commentaire a bien été enregistrée.');
+                $request->getSession()->getFlashBag()->add('info', 'Votre article a bien été enregistrée.');
 			}
 
             return $this->render('PastelPlatformBundle:Default:edition.html.twig', array(
-				'form' => $form->createView()
-				));
+				'form' => $form->createView(),
+                'article' => $article
+            ));
 		}
 		return $this->redirectToRoute('pastel_platform_homepage');
 	}
@@ -119,7 +142,7 @@ class PlatformController extends Controller
             'form' => $form->createView(),
 			'article' => $article,
 			'comments' => $comments
-			));
+        ));
 	}
     
 	/**
@@ -194,6 +217,27 @@ class PlatformController extends Controller
 			$request->getSession()->getFlashBag()->add('info', "Le commentaire a bien été supprimé");
 
 			return $this->redirectToRoute('fos_user_profile_show');
+		}
+
+		return $this->redirectToRoute('pastel_platform_homepage');
+
+	}    
+    
+	/**
+     * @Route("/blog/pictureSuppression/{id}/{articleId}", name="pastel_platform_pictureSuppression")
+     */
+	public function pictureSuppressionAction(Request $request, ArticlePicture $articlePicture, $id, $articleId)
+	{
+		if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+			
+			$em = $this->getDoctrine()->getManager();
+
+			$em->remove($articlePicture);
+			$em->flush();
+
+			$request->getSession()->getFlashBag()->add('info', "L'image à été supprimé");
+
+			return $this->redirectToRoute('pastel_platform_edition',  array('id' => $articleId));
 		}
 
 		return $this->redirectToRoute('pastel_platform_homepage');

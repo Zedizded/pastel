@@ -57,6 +57,11 @@ class Article
      */
     private $comments;
     
+    /**
+     * @ORM\OneToOne(targetEntity="Pastel\PlatformBundle\Entity\ArticlePicture", cascade={"persist", "remove"})
+     */
+    private $articlePicture;
+    
 
     public function __construct()
     {
@@ -203,4 +208,28 @@ class Article
     {
         return $this->comments;
     }
+    
+    /**
+     * Set articlePicture
+     *
+     * @param \Pastel\PlatformBundle\Entity\ArticlePicture $articlePicture
+     *
+     * @return Article
+     */
+    public function setArticlePicture(\Pastel\PlatformBundle\Entity\ArticlePicture $articlePicture = null)
+    {
+        $this->articlePicture = $articlePicture;
+
+        return $this;
+    }
+
+    /**
+     * Get articlePicture
+     *
+     * @return \Pastel\PlatformBundle\Entity\ArticlePicture
+     */
+    public function getArticlePicture()
+    {
+        return $this->articlePicture;
+    }    
 }
