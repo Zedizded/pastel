@@ -71,7 +71,7 @@
 							<td>{{ comment.content }}</td>
 							<td>
 								<a href="{{ path('pastel_platform_article', { 'id': comment.article.id }) }}" class="btn btn-primary btn-xs" title="Voir"><span class="glyphicon glyphicon-search"></span></a>
-								<a href="{{ path('pastel_platform_commentValidation', { 'id': comment.id }) }}" class="btn btn-primary btn-xs" title="Editer"><span class="glyphicon glyphicon-ok"></span></a>
+								<a href="{{ path('pastel_platform_commentValidation', { 'id': comment.id }) }}" class="btn btn-primary btn-xs" title="Valider"><span class="glyphicon glyphicon-ok"></span></a>
 								<button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#articleDialog{{ comment.id }}"><span class="glyphicon glyphicon-remove"></span></button>
 							</td>
 						</tr>

@@ -4,6 +4,7 @@ namespace Pastel\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use \DateTime;
 
 /**
@@ -34,6 +35,7 @@ class Article
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * @Assert\NotBlank(message = "Veuillez saisir un contenu")
      */
     private $content;
 
