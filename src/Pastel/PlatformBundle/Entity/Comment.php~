@@ -3,6 +3,7 @@
 namespace Pastel\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use \DateTime;
 
 /**
  * Comment
@@ -34,6 +35,13 @@ class Comment
      * @ORM\Column(name="datePost", type="datetime")
      */
     private $datePost;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="warning", type="boolean")
+     */
+    private $warning;
 
     /**
      * @ORM\ManyToOne(targetEntity="Pastel\PlatformBundle\Entity\User", inversedBy="comments")
@@ -46,7 +54,13 @@ class Comment
      * @ORM\JoinColumn(nullable=false)
      */
     private $article;
-
+    
+    
+    public function __construct()
+    {
+        $this->datePost = new Datetime();
+        $this->warning = false;
+    }
 
     /**
      * Get id
@@ -153,4 +167,28 @@ class Comment
     {
         return $this->article;
     }
+    
+    /**
+     * Set warning
+     *
+     * @param boolean $warning
+     *
+     * @return Comment
+     */
+    public function setWarning($warning)
+    {
+        $this->warning = $warning;
+
+        return $this;
+    }
+
+    /**
+     * Get warning
+     *
+     * @return boolean
+     */
+    public function getWarning()
+    {
+        return $this->warning;
+    }    
 }

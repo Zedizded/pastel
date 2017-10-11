@@ -4,6 +4,7 @@ namespace Pastel\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use \DateTime;
 
 /**
  * Article
@@ -50,15 +51,16 @@ class Article
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="Pastel\PlatformBundle\Entity\Comment", mappedBy="article")
+     * @ORM\OneToMany(targetEntity="Pastel\PlatformBundle\Entity\Comment", mappedBy="article", cascade={"remove"})
      */
     private $comments;
+    
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->datePost = new Datetime();
     }
-
 
     /**
      * Get id

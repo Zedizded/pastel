@@ -33,6 +33,7 @@
 				<p>{{ comment.user.username }}</p>
 				<p>{{ comment.datePost|date('d/m/Y H:i') }}</p>
 				<p>{{ comment.content }}</p>
+				<p><a href="{{ path('pastel_platform_signalComment', { 'id': comment.id })}}">signaler</a></p>
 			</div>
 		{% endfor %}
 	{% endif %}
