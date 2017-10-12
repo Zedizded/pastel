@@ -45,6 +45,12 @@ class ArticlePicture
     private $path;
 
     private $file;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="Pastel\PlatformBundle\Entity\Article", inversedBy="articlePicture")
+     */
+    private $article;
+    
 
     public function getUploadRootDir()
     {
@@ -198,5 +204,29 @@ class ArticlePicture
     {
         return $this->random;
     }
+    
+    /**
+     * Set article
+     *
+     * @param \Pastel\PlatformBundle\Entity\Article $article
+     *
+     * @return ArticlePicture
+     */
+    public function setArticle(\Pastel\PlatformBundle\Entity\Article $article = null)
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+
+    /**
+     * Get article
+     *
+     * @return \Pastel\PlatformBundle\Entity\Article
+     */
+    public function getArticle()
+    {
+        return $this->article;
+    }    
 
 }

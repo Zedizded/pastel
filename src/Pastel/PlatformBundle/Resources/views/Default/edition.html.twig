@@ -27,7 +27,7 @@
 		{{ form_widget(form.articlePicture) }}
 	</div>
 
-	{% if article.articlePicture.id is not null %}
+	{% if article.articlePicture is not null %}
 		<p><a href="{{ path('pastel_platform_pictureSuppression', { 'id': article.articlePicture.id , 'articleId': article.id })}}">Supprimer l'image</a></p>
 	{% endif %}	
 	

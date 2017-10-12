@@ -57,6 +57,7 @@ class PlatformController extends Controller
 				if ($articlePicture !== null)
 				{
 					$articlePicture->setAlt($article->getTitle());
+                    $articlePicture->setArticle($article);
 					$articlePicture->setRandom(rand());
 					$em->persist($articlePicture);
 				}       
@@ -96,6 +97,7 @@ class PlatformController extends Controller
 				{
 					$articlePicture->setRandom(rand());
 					$articlePicture->setAlt($article->getTitle());
+                    $articlePicture->setArticle($article);
 					$em->persist($articlePicture);
 				}
                 
