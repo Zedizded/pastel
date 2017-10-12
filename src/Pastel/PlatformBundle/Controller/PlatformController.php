@@ -11,6 +11,8 @@ use Pastel\PlatformBundle\Entity\ArticlePicture;
 use Pastel\PlatformBundle\Entity\Comment;
 use Pastel\PlatformBundle\Form\ArticleType;
 use Pastel\PlatformBundle\Form\CommentType;
+use Pastel\PlatformBundle\Entity\Search;
+use Pastel\PlatformBundle\Form\SearchType;
 
 class PlatformController extends Controller
 {	
@@ -25,14 +27,30 @@ class PlatformController extends Controller
 	/**
      * @Route("/blog", name="pastel_platform_blog")
      */
-	public function blogAction()
+	public function blogAction(Request $request)
 	{
+        $search = new Search();
+		$form   = $this->get('form.factory')->create(SearchType::class, $search);
+        
 		$em = $this->getDoctrine()->getManager();
 
-		$articles = $em->getRepository('PastelPlatformBundle:Article')->findAll();
+		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+			$content = $search->getContent();
+
+			$articles = $em->getRepository('PastelPlatformBundle:Article')->complexFind($content);
+
+			$search = new Search();
+			$form   = $this->get('form.factory')->create(SearchType::class, $search);
+
+		} 
+		else {
+			$articles = $em->getRepository('PastelPlatformBundle:Article')->classicFind();
+		}
 
 		return $this->render('PastelPlatformBundle:Default:blog.html.twig', array(
-			'articles' => $articles
+			'articles' => $articles,
+            'form' => $form->createView()
         ));
 	}    
 
