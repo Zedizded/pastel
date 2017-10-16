@@ -1,9 +1,306 @@
 {# src/Pastel/PlatformBundle/Resources/views/Default/index.html.twig #}
 {% extends "PastelPlatformBundle::layout.html.twig" %}
 
+{% set homePage = true %}
    
 {% block body %}
-    <p>Hello Jolie Julie !</p>
-    <p style="font-size: 7em;">T'es très belle ce matin <br> comme tous les matins <br>mais moins que demain</p>
-    <p><strong>PS : </strong>Ne pose pas ta tasse sur mon tapis de souris stp.</p>
+   
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel" data-slide-to="1"></li>
+            <li data-target="#carousel" data-slide-to="2"></li>
+            <li data-target="#carousel" data-slide-to="3"></li>
+            <li data-target="#carousel" data-slide-to="4"></li>
+            <li data-target="#carousel" data-slide-to="5"></li>
+            <li data-target="#carousel" data-slide-to="6"></li>
+            <li data-target="#carousel" data-slide-to="7"></li>
+            <li data-target="#carousel" data-slide-to="8"></li>
+            <li data-target="#carousel" data-slide-to="9"></li>
+            <li data-target="#carousel" data-slide-to="10"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active"> <img alt="" src="{{ asset('img/carousel/01-aashish-r-gautam-340139.jpg') }}"></div>
+            <div class="item"> <img alt="" src="{{ asset('img/carousel/02-chi-n-ph-m-223833.jpg') }}"></div>
+            <div class="item"> <img alt="" src="{{ asset('img/carousel/03-bill-hamway-268494.jpg') }}"></div>
+            <div class="item"> <img alt="" src="{{ asset('img/carousel/04-nathan-anderson-157614.jpg') }}"></div>
+            <div class="item"> <img alt="" src="{{ asset('img/carousel/05-ekaterina-kartushina-113174.jpg') }}"></div>
+            <div class="item"> <img alt="" src="{{ asset('img/carousel/06-carl-cheng-387064.jpg') }}"></div>
+            <div class="item"> <img alt="" src="{{ asset('img/carousel/07-madi-robson-113926.jpg') }}"></div>
+            <div class="item"> <img alt="" src="{{ asset('img/carousel/08-carolina-sanchez-b-83117.jpg') }}"></div>
+            <div class="item"> <img alt="" src="{{ asset('img/carousel/09-paul-stickman-263860.jpg') }}"></div>
+            <div class="item"> <img alt="" src="{{ asset('img/carousel/10-simon-wijers-37854.jpg') }}"></div>
+            <div class="item"> <img alt="" src="{{ asset('img/carousel/11-gaelle-marcel-85382.jpg') }}"></div>
+        </div>
+    </div>
+    
+    <div id="lci" class="jumbotron">
+        <div class="container">
+            <h1>Le Lions CLub International</h1>
+            <h2>We serve, nous servons</h2>
+            <small class="pull-right mt-20">Voir : <a class="animateScroll" href="#lionnisme">"Le Lionnisme"</a> | <a class="animateScroll" href="#ccp">"Le Club Castres Pastel"</a></small>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div id="logoLions" class="col-sm-3">
+            <img class="img-responsive" src="{{ asset('img/logos/logo-lions.png') }}" alt="Logo Lions"/>
+        </div>
+        <div>
+            <p>Le Lions Clubs International est le premier « Club-Service » au niveau mondial en nombre de membres. Fondé en 1917 aux Etats-Unis, implanté dans 200 pays ou territoires, il regroupe aujourd’hui près de 1 300 000 hommes et femmes, dont 30 000 en France métropolitaine. Les Lions de France se réunissent dans 1 240 Clubs qui couvrent les 95 départements.</p>
+            <p>Le Lions Clubs International est doté du statut consultatif auprès de l’ONU, l’UNESCO, l’UNICEF, l’OMS et le Conseil de l’Europe Le sigle LIONS, qui signifie « Liberty, Intelligence, Our Nations’ Safety » (Liberté et compréhension sont la sauvegarde de nos nations), et la devise « We Serve » (Nous Servons), résument l’idéal de ses membres : déployer un humanisme moderne, sans considération de race, de religion ou de nationalité. Par le slogan « Partenaires dans la Cité », les Lions de France expriment leur engagement à favoriser l’amélioration de la vie quotidienne dans la communauté.</p>
+            <p>Le LIONS Club International a été mis à l’honneur récemment dans une enquête retracée par le Financial Times qui l’a désignée comme la meilleure ONG au monde suivant quatre critères pris en considération :</p>
+            <ul class="modifLi">
+                <li><span>•&nbsp;</span> La transparence des comptes</li>
+                <li><span>•&nbsp;</span> L’adaptabilité</li>
+                <li><span>•&nbsp;</span> La communication</li>
+                <li><span>•&nbsp;</span> La capacité d’exécution</li>
+            </ul>
+        </div>
+        <div class="col-sm-12">
+            <p>Les Lions de France par leurs actions suscitent plus de 18 millions d’euros de dons par an qu’ils redistribuent intégralement au profit d’oeuvres sociales variées : le Lions Clubs International est le plus important «Club-Service» de France. Les Lions de France ont crée une fondation reconnue d’utilité publique, la Fondation des Lions Clubs de France (FLCF).</p>
+            <p>Plus de un million deux cents mille heures de don de soi sont consacrées annuellement à aider les autres : fidèles à leur but humanitaire et social, les Lions de France représentent l’équivalent d’une entreprise de près de 700 personnes à plein temps.
+            <p>Le montant des fonds collectés par l’ensemble des membres des 45 000 Lions Clubs du monde se situe en moyenne à 900 millions de dollars US par an (soit près de 730 millions d’euros).</p>
+        </div>
+    </div>
+
+    <div id="lionnisme" class="jumbotron mt-50">
+        <div class="container">
+            <h1>Le Lionnisme</h1>
+            <h2>Un état d'esprit, un mode de vie</h2>
+            <small class="pull-right mt-20">Voir : <a class="animateScroll" href="#lci">"Le Lions Club International"</a> | <a class="animateScroll" href="#ccp">"Le Club Castres Pastel"</a></small>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="col-sm-4 mb-10">
+            <img class="img-responsive" src="{{ asset('img/home/neil-thomas-329602.jpg') }}" alt="Lionnism spirit"/>
+        </div>
+        <div>
+            <p>Le Lions Clubs International accueille des hommes et des femmes de toutes origines sociales, sans distinction ethnique, politique ou religieuse. Leur volonté commune est de s'engager dans des actions humanitaires et sociales, d'agir ensemble et d'obtenir des résultats concrets.</p>
+            <p>Les Lions entreprennent de multiples actions aux niveaux local, régional, national et international. Au quotidien, motivés par une seule et même éthique humaniste, les Lions travaillent pour apporter des solutions concrètes aux problématiques sociales, médicales, éducatives et environnementales.</p>
+            <p>Les actions internationales bénéficient d'un effet réseau qui les rend particulièrement efficaces en raison de l'éthique partagée entre les Lions de tous pays. Ainsi, l’intégralité des dons collectés a été gérée sur place par les Lions Clubs de l’Asie du Sud-Est après le tsunami de décembre 2005.</p>
+            <p>Les Lions sont également acteurs de la vie culturelle de leur région et de son ouverture sur le monde.</p>
+            <p>Chaque Club, dont les officiels sont élus pour une durée d'un an non renouvelable, décide de sa stratégie et de son programme, de la nature et du lieu de ses réunions, et organise ses propres collectes de fonds.</p>
+            <p>Ces activités ont lieu ou sont préparées lors des réunions statutaires de chaque Club, dans une ambiance caractérisée par l’amitié, la convivialité, la créativité et la générosité.</p>
+            <p>Chaque Club a la possibilité, si ses membres le souhaitent, de se jumeler avec un ou plusieurs Lions Clubs d'autres pays. Ceci permet de tisser des liens d'amitié et de collaboration étroite au sein du mouvement.</p>
+            <h2>Devenir membre</h2>
+            <p>Pour intégrer à un Lions Club il faut être parrainé et s'engager solennellement au moment de l'adhésion à respecter l’éthique du Lionisme au cours d'une cérémonie particulière appelée « intronisation ».</p>
+            <p>Tout membre d'un Lions Club s'engage au moment de son intronisation à :</p>
+            <ul>
+                <li>Agir auprès des personnes en difficulté physique ou morale</li>
+                <li>Aider et soutenir les jeunes</li>
+                <li>Prévenir les conduites à risque</li>
+                <li>Défendre et promouvoir les valeurs civiques, culturelles et artistiques</li>
+                <li>Défendre l'environnement</li>
+            </ul>
+            <p>De plus, il ou elle se déclare prêt(e) à :</p>
+            <ul>
+                <li>Participer à toutes les manifestations, réunions, congrès et conventions du Lions Clubs International</li>
+                <li>Accepter toute fonction au sein du Lionisme qui pourrait lui être proposée</li>
+            </ul>
+            <h2>Les activités</h2>
+            <p>Afin de financer leurs projets, les Lions Clubs organisent chaque année quelque 5000 manifestations très diverses : sportives, artistiques, culturelles... Chaque Club définit les oeuvres qu’il souhaite soutenir et le programme de ses manifestations. Dans la poursuite de ses buts, chaque Club peut choisir de travailler seul, avec d’autres Lions Clubs, et/ou en étroite collaboration avec les associations affiliées Lions, et/ou avec des partenaires extérieurs.</p>
+            <h2>Les Actions Internationales</h2>
+            <p>Depuis 1925, en réponse à la demande d’Helen Keller, les Lions sont « les chevaliers des aveugles dans la croisade contre les ténèbres ».</p>
+            <p>De 1990 à 1994, les Lions ont mené leur 1re campagne internationale SightFirst (la Vue d’Abord) dont le but était d’éradiquer les cécités évitables et réversibles.</p>
+            <p>Une collecte de 150 millions d’euros a permis : 4,6 millions d’opérations de la cataracte, le traitement de 3 millions de glaucomes, 65 millions de traitements de la cécité des rivières, la construction de 259 hôpitaux ophtalmologiques, l’équipement en matériel le plus moderne de 300 centres ophtalmologiques, la formation appropriée de 77 890 ophtalmologues, infirmières et personnels soignants, et en France, la création du Centre du Glaucome à l’hôpital des Quinze-Vingt à Paris.</p>
+            <p>De 2005 à 2008, Le Lions Clubs International a engagé une deuxième campagne, SightFisrt II (la Vue pour Tous), qui lui a permis de collecter au niveau mondial plus de 200 millions de dollars avec pour objectif de sauver la vue de 40 millions de personnes au cours des 10 ans à venir : 100 millions destinés à éliminer et maîtriser les principales causes de cécité, 50 millions pour combattre les nouvelles menaces et 50 millions pour assurer la vue pour tous.</p>
+            <h2>Les Actions Nationales</h2>
+            <p>Les Lions de France désignent régulièrement, lors de leur Convention Nationale, une Action Nationale pour une durée de trois ans. Le sauvetage en mer, le don d'organe, l’orthèse électronique, l'assistance à l'enfance maltraitée, l'aide à la création des centres de jour Alzheimer, la recherche sur le cancer de l'enfant et de l'adolescent sont quelques unes de ces causes mobilisatrices.</p>
+            <p>Présents depuis le 1er jour, les Lions sont partenaires de l’AFM et se mobilisent chaque année pour assurer le standard du Téléthon et pour organiser des ForceT.</p>
+            <h2>Partenaires dans la Cité</h2>
+            <p>La poursuite par chaque Lions Club de toutes ces activités, locales et nationales, souligne l'implication au quotidien des Lions de France au profit de la communauté, une valeur exprimée par le slogan « Partenaires dans la Cité ».</p>
+            <h2>Les résultats en chiffres</h2>
+            <p>Au niveau national, au cours du dernier exercice, le Lions Clubs International a collecté en France plus de 18 millions d'euros et consacré plus de 1 ,2 million d'heures à ses différentes oeuvres sociales.</p>
+            <p>La somme en euros est composée de 36 % de dons en nature et 64 % de dons en argent. Les actions se répartissent entre des projets menés au niveau du club, entité de base au niveau local, et la participation à des projets de plus grande envergure au niveau national, ainsi que certaines actions menées sur un plan international.</p>
+            <p>Quel que soit le niveau de l'activité (local, national, international), l'engagement des Lions de France au profit de la communauté reste primordial.</p>
+        </div>
+    </div>
+    
+    <div id="ccp" class="jumbotron mt-50">
+        <div class="container">
+            <h1>Le Club Castres Pastel</h1>
+            <h2>Notre Club bien aimé</h2>
+            <small class="pull-right mt-20">Voir : <a class="animateScroll" href="#lionnisme">"Le Lionnisme"</a> | <a class="animateScroll" href="#lci">"Le Lions Club International"</a></small>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="col-sm-3">
+            <img class="img-responsive" src="{{ asset('img/logos/logo-pastel-v3a.png') }}" alt="Fanion Castres Pastel"/>
+        </div>
+        <div>
+            <h2>Le projet de club</h2>
+            <p>Le projet qui nous unit est celui de l’aide à l’enfance.</p>
+            <p>Le club considère comme prioritaire les actions en faveur des jeunes enfants notamment dans les domaines de la santé et de l’aide aux familles.</p>
+            <p>Les actions qui s’insèrent dans le projet de club sont :</p>
+            <h3>Internationales</h3>
+            <ul class="modifLi modifLiInter">
+                <li><span>•&nbsp;</span> Soutien à la Pouponnière de M’Bour au Sénégal</li>
+                <li><span>•&nbsp;</span> Aide aux enfants sinistrés d’une Ecole au Népal</li>
+            </ul>
+            <h3>Nationales</h3>
+            <ul class="modifLi">
+                <li><span>•&nbsp;</span> Aide à l’Association « Enfants et Santé »</li>
+                <li><span>•&nbsp;</span> Aide à l’Association « Rêves »</li>
+                <li><span>•&nbsp;</span> Le Club abonde en 2015 son compte à la Fondation des Lions de France : versement de 2 000€</li>
+            </ul>
+            <h3>Locales</h3>
+            <ul>
+                <li>Aide au service de pédiatrie de l’hôpital de Castres</li>
+                <li>Aide à l’association « Pour le bonheur de Mathis »</li>
+                <li>Aide à l’association « Bébés Câlins »</li>
+                <li>Aide au service de pédiatrie de la Clinique du Sidobre</li>
+                <li>Aide aux enfants handicapés de l’Association «Saute-Mouton»</li>
+                <li>Aide aux enfants de l’APAJH du Tarn</li>
+                <li>Aide au profit des sinistrés de Lamalou et Montpellier en décembre 2014</li>
+            </ul>
+            <h2>Création du Club Castres Pastel</h2>
+            <div class="col-xs-12 mb-30">
+                <p>Le Club Castres-Pastel dont la création a été initiée par le Club Castres-Mazamet, s’est vu remettre sa Charte le 25 avril 2009 par le Gouverneur du District 103 Sud, Danièle ALAZET.</p>
+                <p>C’est donc un jeune club, qui se veut mixte, intergénérationnel et d’horizons professionnels divers.</p>
+                <p>Il compte actuellement 26 membres résidant sur Castres et ses environs.</p>
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-30">
+                <img src="{{ asset('img/home/charte-01.jpg') }}" class="img-responsive d-block mb-10" alt="Inauguration-01">
+                <small>Remise de la Charte du Club Castres Pastel le 25 avril 2009</small>
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-30">
+                <img src="{{ asset('img/home/charte-02.jpg') }}" class="img-responsive d-block mb-10" alt="Inauguration-02">
+                <small>Sabine Fraisse, 1re Présidente du Club Castres Pastel</small>
+            </div>
+            <h2>Vie du club</h2>
+            <p>Nous pensons qu’il faut souder le club par des moments de convivialité au cours de nos réunions statutaires, en proposant des sorties de découverte culturelle ou sportives, en organisant des conférences ou bien encore autour des « Patates »...</p>
+            <h3>Activités culturelles ou sportives</h3>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/rando/rando-01.jpg') }}" class="img-responsive d-block mb-10" alt="Visite du château de Magrin">
+                <small class="verySmall">Château de Magrin et musée du Pastel</small>
+            </div>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/rando/rando-02.jpg') }}" class="img-responsive d-block mb-10" alt="Rando gaillacoise">
+                <small class="verySmall">Rando gaillacoise<br><span class="whitePoint">.</span></small>
+            </div>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/rando/rando-03.jpg') }}" class="img-responsive d-block mb-10" alt="Boucle Jean Petit">
+                <small class="verySmall">Boucle Jean Petit<br><span class="whitePoint">.</span></small>
+            </div>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/rando/rando-04.jpg') }}" class="img-responsive d-block mb-10" alt="Petite pause détente">
+                <small class="verySmall">Petite pause détente<br><span class="whitePoint">.</span></small>
+            </div>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/rando/rando-05.jpg') }}" class="img-responsive d-block mb-10" alt="Promenade gourmande Gaillacoise 2014">
+                <small class="verySmall">Promenade gourmande Gaillacoise 2014</small>
+            </div>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/rando/rando-06.jpg') }}" class="img-responsive d-block mb-10" alt="Rando à La Capelle">
+                <small class="verySmall">Rando à La Capelle<br><span class="whitePoint">.</span></small>
+            </div>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/rando/rando-07.jpg') }}" class="img-responsive d-block mb-10" alt="Rando à Burlats">
+                <small class="verySmall">Rando à Burlats<br><span class="whitePoint">.</span></small>
+            </div>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/rando/rando-08.jpg') }}" class="img-responsive d-block mb-10" alt="Promenade gourmande Gaillacoise 2015">
+                <small class="verySmall">Promenade gourmande Gaillacoise 2015<br><span class="whitePoint">.</span></small>
+            </div>
+            <h3>Les « Patates »</h3>
+            <p>Le dimanche 21 avril 2013, quelques membres du club et leur famille se sont retrouvés chez Katie, notre véto, pour planter des patates. Ce fut l’occasion de beaucoup de complicité et de bons moments de convivialité, fou-rires garantis et partage d’un repas préparé par chacun. En Août nous avons pu récolter 280 kg de patates qui ont été officiellement remises aux « Restos du Coeur » de Labruguière le 8 octobre 2013</p>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/patates/patates-01.jpg') }}" class="img-responsive d-block mb-10" alt="Cueillette de pommes de terre-01">
+                <small class="verySmall">Tous au travail !</small>
+            </div>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/patates/patates-02.jpg') }}" class="img-responsive d-block mb-10" alt="Cueillette de pommes de terre-02">
+                <small class="verySmall">On ramasse les Patates</small>
+            </div>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/patates/patates-03.jpg') }}" class="img-responsive d-block mb-10" alt="Repas après cueillette de pommes de terre">
+                <small class="verySmall">Un bon repas pour récompense</small>
+            </div>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/patates/patates-04.jpg') }}" class="img-responsive d-block mb-10" alt="Don des pommes de terre aux Restos du Coeur">
+                <small class="verySmall">Don aux Restos du Coeur</small>
+            </div>
+            <h3>Les Conférences</h3>
+            <div class="col-sm-4 mb-10">
+                <img class="img-responsive" src="{{ asset('img/home/the-climate-reality-project-349094.jpg') }}" alt="Conférence"/>
+            </div>
+            <h4>Singapour, une Cité-État au coeur de la mondialisation</h4>
+            <small><b><i>Le 6 décembre 2010 - Par Mr Michel Bernadet</i></b></small>
+            <h4 class="mt-30">Le Japon à la lumière de la dernière catastrophe</h4>
+            <small><b><i>Le 6 juin 2011 - par le professeur Reinartd Drifte</i></b></small>
+            <p>Le Professeur Drifte est spécialiste de l’Asie et plus particulièrement des relations sino-japonaises. Il est professeur émérite de l’université de Newcastle et intervient dans de nombreuses universités pour donner des conférences ou comme chercheur associé. Il est professeur à la London Hight School.</p>
+            <p>Il intervient notamment en Chine et au Japon dont il maîtrise les langues.</p>
+            <h4 class="mt-30">Les voyages officiels et la protection rapprochée du Président de la République</h4>
+            <small><b><i>Le 18 octobre 2013 - par Mr Philippe Saint Jean</i></b></small>
+            <p>Notre ami Pierre-Alain nous a présenté Mr Philippe Saint Jean qui nous a fait partager quelques moments de son expérience professionnelle dans la garde rapprochée des Présidents de la République.</p>
+            <p>Il nous a conté nombres anecdotes sur ses rencontres avec les «grands» de ce monde (La Famille Royale d’Angleterre, le Président Reagan...) et leur protection lors de leur visites en France.</p>
+            <p>Merci à lui et merci à Pierre-Alain d’avoir organisé sa venue.</p>
+            <h4 class="mt-30">La CNV (Communication Non-Violente) basée sur le postulat de Marchall</h4>
+            <small><b><i>Le 17 mars 2014 - Par Mme Caroline Daures</i></b></small>
+            <p>Mme Daures est praticienne en psychothérapie, formatrice en développement personnel (gestion du stress, risques psycho-sociaux, management) dans un groupe de consultants Lyonnais ; elle est animatrice d’ateliers de Communication Non Violente La CNV repose sur une pratique du langage qui renforce notre aptitude à conserver nos qualités de coeur même dans des conditions éprouvantes. Son objectif est de nous rappeler ce qui fait la valeur profonde des interactions humaines et de nous aider à les vivre avec cette conscience.</p>
+            <p>La CNV nous invite à reconsidérer la façon dont nous nous exprimons et dont nous entendons l’autre. Les mots ne sont plus alors des réactions coutumières et automatiques mais deviennent des réponses réfléchies, émanant d’une prise de conscience de nos perceptions, de nos émotions et de nos désirs ; nous nous exprimons alors sincèrement et calmement, en portant sur l’autre un regard empreint de respect et d’empathie.</p>
+            <p>La CNV aiguise notre sens de l’observation et nous incite à identifier les comportements et les situations qui nous touchent. Nous apprenons à définir et formuler clairement ce que nous souhaitons dans une situation donnée. C’est un puissant outil de transformation.</p>
+            <p>En déjouant nos vieux schémas de défense, de retraite et d’attaque, la CNV nous amène à une perception neuve de nous-mêmes et des autres mais aussi de nos intentions et de nos relations.</p>
+            <p>En effet, lorsque au lieu de critiquer et de juger, nous sommes attentifs à ce que nous observons, ressentons et désirons, nous découvrons l’ampleur de notre bonté naturelle. Parce qu’elle privilégie la qualité de l’écoute, de soi et de l’autre, la CNV suscite le respect, l’attention et l’empathie et engendre un désir mutuel de donner spontanément dans l’élan du coeur.</p>
+            <p>La CNV est une invitation permanente à concentrer notre attention là où nous avons le plus de chance de trouver ce que nous recherchons.</p>
+            <p>Les freins :</p>
+            <ul>
+                <li>Les jugements moralisateurs qui impliquent que ceux dont le comportement ne correspond pas à nos valeurs ont tort ou sont mauvais</li>
+                <li>Communiquer ses désirs sous forme d’exigence</li>
+                <li>Les comparaisons qui peuvent entraver la bienveillance, tant envers nous-mêmes qu’envers autrui</li>
+            </ul>
+            <h4 class="mt-30">Raisons d’Etat - Des affaires corses à Merah, les dérives du Renseignement</h4>
+            <small><b><i>Le 9 juin 2015 - Par M Roger Marion, ex-premier policier de France</i></b></small>
+            <h3>Le concours d’éloquence</h3>
+            <div class="col-sm-4 mb-10">
+                <img class="img-responsive" src="{{ asset('img/home/tim-napier-181584.jpg') }}" alt="Éloquence"/>
+            </div>
+            <p>Le Lions Clubs International s’est engagé depuis son origine, il y a presque 100 ans, à promouvoir le bien-être civique social, moral et culturel de la société. A ce titre, les Lions se sont toujours investis pour la culture, l’éducation et le savoir. Par ailleurs, promouvoir les jeunes talents, la Culture, le Développement durable et la Paix dans le respect de nos idéaux est une excellente façon de faire connaître notre Mouvement.</p>
+            <p>Dans le cadre des actions culturelles du Lions Club et en vue de célébrer le centenaire de notre mouvement, notre Club Castres Pastel a organisé pour la première fois un concours d’éloquence en vue de présenter un candidat lors du Congrès de Toulouse les 7 et 8 avril 2017.</p>
+            <p>Ce concours a été proposé aux élèves lycéens de Castres et Mazamet.</p>
+            <p>Il consistait pour ces élèves à écrire un texte à partir de la phrase de Melvin Jones, le fondateur du Lions Club International : « On ne peut aller bien loin dans la vie si l’on ne commence pas par faire quelque chose pour quelqu’un d’autre » puis à le présenter devant un jury formé d’un avocat, un journaliste, un professeur de lettres et 2 membres de notre club. Leur prestation devait durer entre 8 et 10 mn maximum.</p>
+            <p>Les jeunes candidats ont tous fait une très belle prestation qui a enthousiasmé le jury et le public présent, démontrant par là la qualité culturelle de ces jeunes gens.</p>
+            <h3>Les passations de pouvoir</h3>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/passations/passation-01.jpg') }}" class="img-responsive d-block mb-10" alt="Passation 2010">
+                <small class="verySmall">2010 Sabine à Daniel</small>
+            </div>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/passations/passation-02.jpg') }}" class="img-responsive d-block mb-10" alt="Passation 2011">
+                <small class="verySmall">2011 Daniel à Bénédicte</small>
+            </div>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/passations/passation-03.jpg') }}" class="img-responsive d-block mb-10" alt="Passation 2012">
+                <small class="verySmall">2012 Bénédicte à Anne</small>
+            </div>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/passations/passation-04.jpg') }}" class="img-responsive d-block mb-10" alt="Passation 2013">
+                <small class="verySmall">2013 Anne à Stéphane</small>
+            </div>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/passations/passation-05.jpg') }}" class="img-responsive d-block mb-10" alt="Passation 2014">
+                <small class="verySmall">2014 Stéphane à Dominique</small>
+            </div>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/passations/passation-06.jpg') }}" class="img-responsive d-block mb-10" alt="Passation 2015">
+                <small class="verySmall">2015 Dominique à Marie-Christine</small>
+            </div>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/passations/passation-07.jpg') }}" class="img-responsive d-block mb-10" alt="Passation 2016">
+                <small class="verySmall">2016 Marie-Christine à Cathie</small>
+            </div>
+            <div class="col-sm-3 col-xs-6 mb-30">
+                <img src="{{ asset('img/home/passations/passation-08.jpg') }}" class="img-responsive d-block mb-10" alt="Passation 2017">
+                <small class="verySmall">2017 Cathie à Michel</small>
+            </div>
+        </div>
+    </div>
+    
+    <div class="text-center mb-20">
+        <a class="toUp" href="#logo"><i class="fa fa-arrow-circle-o-up fa-3x" aria-hidden="true"></i></a>
+    </div>
+      
 {% endblock %}

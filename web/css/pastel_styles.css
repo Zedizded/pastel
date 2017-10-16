@@ -1,0 +1,290 @@
+/************************** Common **************************/
+body {
+    color: #7b7b7b;
+}
+
+h2 {
+    color: #033e5d;
+}
+
+textarea {
+    resize: vertical;
+}
+
+::selection{
+  background-color: #ded5b7;
+  color: #033e5d;
+}
+
+::-moz-selection {
+  background-color: #ded5b7;
+  color: #033e5d;
+}
+
+.mt-0 {
+    margin-top: 0px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mt-50 {
+    margin-top: 50px;
+}
+
+.mt-100 {
+    margin-top: 100px;
+}
+
+.mb-0 {
+    margin-bottom: 0px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+.mb-50 {
+    margin-bottom: 50px;
+}
+
+.mb-100 {
+    margin-bottom: 100px;
+}
+
+
+/************************** Nav **************************/
+.navbar {
+    z-index: 2;
+}
+
+.navbar-default {
+    background-color: #fff;
+    border: 0px;
+    height: 35px;
+}
+
+.navbar-default .navbar-nav>li>a {
+    text-indent: 0px;
+    color: #033e5d;
+    letter-spacing: 1px;
+    margin: 5px 0px 0px 5px;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: #ded5b7;
+    background-color: #033e5d;
+}
+
+.navbar-default .navbar-nav>li>a:active,
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a:focus {
+    color: #bcb395;
+    background-color: #fff;
+}
+
+.navbar-brand {
+    padding-top: 5px;
+}
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+    border: 0px;
+}
+
+#logo {
+    height: 65px;
+    margin-left: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    #logo {
+        height: 50px;
+        margin-left: 0px;
+    }
+    .navbar-default .navbar-nav>li>a {
+        margin: 0px;
+    }
+    .navbar-collapse, .collapse, .in {
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+@media screen and (max-width: 305px) {
+    #logo {
+        height: 45px;
+    }
+    #carousel {
+        display: none;
+    }
+    .navbar {
+        margin-bottom: 20px;
+    }
+}
+
+
+/************************** Footer **************************/
+.footer {
+    display: flex;
+    align-items: center;
+    height: auto;
+    padding: 10px;
+    color: #033e5d ;
+    background-color: #ded5b7;
+    text-align: center;
+}
+
+.footer a {
+    color: #033e5d ;   
+    list-style: none;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #001c2d;   
+}
+
+#copyright {
+    padding-top: 10px;
+}
+
+#mentions,
+#networks {
+    padding-top: 30px;
+}
+
+@media screen and (max-width: 992px) {
+    #mentions,
+    #networks {
+        padding-top: 50px;
+    }
+}
+@media screen and (max-width: 767px) {
+    #mentions,
+    #networks {
+        padding-top: 0px;
+    }
+}
+
+
+/************************** Carousel **************************/
+#carousel {
+    z-index: 1;
+}
+
+
+/************************** Home **************************/
+.jumbotron {
+    background-color: #ded5b7;
+    color: #033e5d;
+    padding-bottom: 29px;
+}
+
+.jumbotron a {
+    color: #033e5d;
+    text-decoration: none;
+}
+
+.jumbotron a:hover {
+    color: #001c2d;
+}
+
+#logoLions {
+    float: left;
+    padding-top: 25px;
+    padding-left: 0px;
+}
+
+.modifLi {
+    list-style: none;
+    text-indent: 20px;
+}
+
+.modifLi span {
+    font-size: 0.8em;
+}
+
+.modifLiInter {
+    text-indent: 20px;
+}
+
+.whitePoint {
+    color: #fff;
+}
+
+.toUp,
+.toUp:focus {
+    color: #033e5d;
+}
+
+.toUp:hover,
+.toUp:active {
+    color: #001c2d;
+}
+
+@media screen and (max-width: 1200px){
+    .modifLi {
+        text-indent: -15px;
+    }
+    .modifLiInter {
+        text-indent: 20px;
+    }
+}
+
+@media screen and (max-width: 992px){
+    #logoLions {
+        padding-top: 0px;
+    }
+    .modifLiInter li:last-child {
+        margin-left: 140px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .jumbotron h2 {
+        font-size: 1.8em;
+    }
+    .modifLiInter li:last-child {
+        margin-left: 0px;
+    }
+    .modifLiInter {
+        text-indent: -15px;
+    }
+}
+
+@media screen and (max-width: 490px){
+    #logoLions {
+        float: none;
+        margin-left: 10%;
+    }
+}
+
+@media screen and (max-width: 360px){
+    .verySmall {
+        font-size: 75%;
+    }
+}
+
+@media screen and (max-width: 305px) {
+    .jumbotron {
+        padding: 15px;
+    }
+}
