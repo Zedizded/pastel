@@ -3,12 +3,18 @@ body {
     color: #7b7b7b;
 }
 
-h2 {
+h1, h2, h3, h4, h5, h6 {
     color: #033e5d;
 }
 
 textarea {
     resize: vertical;
+    min-height: 94px;
+    border-color: #ded5b7 !important;
+}
+
+label {
+    color: #033e5d;
 }
 
 ::selection{
@@ -20,6 +26,22 @@ textarea {
   background-color: #ded5b7;
   color: #033e5d;
 }
+
+.bodyContent {
+    min-height: 77vh;
+}
+
+/*
+@media screen and (max-width: 768px) {
+    .bodyContent {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+    .modifLiInter {
+        text-indent: -15px;
+    }
+}
+*/
 
 .mt-0 {
     margin-top: 0px;
@@ -97,7 +119,7 @@ textarea {
 .navbar-default .navbar-nav>.active>a,
 .navbar-default .navbar-nav>.active>a:hover,
 .navbar-default .navbar-nav>.active>a:focus {
-    color: #bcb395;
+    color: #c9bf9c;
     background-color: #fff;
 }
 
@@ -288,3 +310,86 @@ textarea {
         padding: 15px;
     }
 }
+
+
+/************************** Blog **************************/
+.btnSearch input {
+    border-color: #ded5b7;
+}
+
+.btnSearch input:focus {
+    border-color: #ded5b7;
+    box-shadow: 0px 0px 0px #fff;
+}
+
+.btnSearch input::placeholder {
+    color: #ded5b7;
+}
+
+.btnSearch button {
+    background-color: #ded5b7;
+    color: #033e5d;
+}
+
+.btnSearch button:hover {
+    background-color: #c9bf9c;
+    color: #001c2d;
+}
+
+.blogArticle {
+    padding: 20px;
+    border: 1px solid #ded5b7;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    clear: both;
+}
+
+.blogArticle .blogTitle{
+    margin-top: 0px;
+    color: #033e5d;
+}
+
+.blogArticle a {
+    color: #033e5d;
+    text-decoration: none;
+}
+
+.blogArticle a:hover {
+    color: #001c2d;
+}
+
+.blogButton {
+    text-align: right;
+    margin-bottom: 0px;
+    margin-top: 20px;
+}
+
+.blogButton .btn,
+.btnBlue {
+    background-color: #033e5d;
+    color: #ded5b7 !important;
+    border: 0;
+}
+
+.blogButton .btn:hover,
+.btnBlue:hover {
+    background-color: #001c2d;
+    color: #ded5b7;
+}
+
+.blogContent {
+    margin-top: 20px;
+}
+
+.blogComment, .blogCommentList {
+    margin-top: 30px;
+    margin-left: 2px;
+}
+
+.blogCommentList b {
+     color: #033e5d;
+}
+
+.comment {
+    margin-top: 20px;
+  }

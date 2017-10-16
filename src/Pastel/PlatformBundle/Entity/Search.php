@@ -26,6 +26,7 @@ class Search
      * @var string
      *
      * 
+     * @Assert\Length(min=3,minMessage = "Veuillez entrer minimum 3 caractères")
      * @ORM\Column(name="content", type="string", length=255)
      */
     private $content;

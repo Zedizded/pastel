@@ -5,38 +5,44 @@
 
 {% block body %}
 
- 	<div class="container blogContainer">
-		
-		{{ form_start(form, {'attr': {'class': 'form-inline '}}) }}
-		{{ form_errors(form) }}
-		{{ form_errors(form.content) }}
-		
-		<div class="input-group">
-			{{ form_widget(form.content, {'attr': {'class': 'form-control', 'placeholder': 'Recherche'}}) }}
-			<span class="input-group-btn">
-				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-            </span>
+ 	<div class="bodyContent">
+        <div class=" container mt-50">
+            {{ form_start(form, {'attr': {'class': 'form-inline '}}) }}
+            {{ form_errors(form) }}
+            {{ form_errors(form.content) }}
+
+            <div class="input-group pull-right btnSearch">
+                {{ form_widget(form.content, {'attr': {'class': 'form-control', 'placeholder': 'Recherche'}}) }}
+                <span class="input-group-btn">
+                    <button type="submit" class="btn"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                </span>
+            </div>
         </div>
 
-        {{ form_rest(form) }}
-        {{ form_end(form) }}
+        <div class=" container mt-20">
+            {{ form_rest(form) }}
+            {{ form_end(form) }}
 
-        {% if articles is empty %}
-            <p>aucun article trouvé</p>
-            
-        {% else %}
-            {% for article in articles|reverse %}
-                <div class="blogArticle">
-                    <h3 class="blogTitle">{{ article.title }}</h3>
-                    <p>Posté le {{ article.datePost|date('d-m-Y') }}</p>
-                    {% if article.articlePicture is not null %}
-                        <img src="{{  asset('uploads/articlesPictures/'~article.articlePicture.path) }}" alt="{{ article.articlePicture.alt }}" class="img-responsive" />
-                    {% endif %}
-                    <p>{{ article.content|truncate(400, true)|raw }}</p>
-                    <p class="blogButton"><a href="{{ path('pastel_platform_article', { 'id': article.id }) }}" class="btn btn-default">Lire la suite</a></p>
-                </div>
-            {% endfor %}
-        {% endif %}
+            {% if articles is empty %}
+                <p>aucun article trouvé</p>
+
+            {% else %}
+                {% for article in articles|reverse %}
+                    <div class="blogArticle">
+                        <h3 class="blogTitle">{{ article.title }}</h3>
+                        <p>Posté le {{ article.datePost|date('d-m-Y') }}</p>
+                        {% if article.articlePicture is not null %}
+                            <img src="{{ asset('uploads/articlesPictures/'~article.articlePicture.path) }}" alt="{{ article.articlePicture.alt }}" class="img-responsive" />
+                        {% endif %}
+                        <p>{{ article.content|truncate(400, true)|raw }}</p>
+                        <p class="blogButton"><a href="{{ path('pastel_platform_article', { 'id': article.id }) }}" class="btn btn-default">Lire la suite</a></p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="text-center mb-20">
+            <a class="toUp" href="#logo"><i class="fa fa-arrow-circle-o-up fa-3x" aria-hidden="true"></i></a>
+        </div>
     </div>
     		
 {% endblock %}

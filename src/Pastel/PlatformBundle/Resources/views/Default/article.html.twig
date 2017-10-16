@@ -4,51 +4,71 @@
 
 {% block body %}
 
-	<div class="container blogArticle blogContainer">
-		<h3 class="blogTitle">{{ article.title }}</h3>
-		<p>{{ article.datePost|date('d-m-Y') }}</p>
-		{% if article.articlePicture is not null %}
-			<img src="{{  asset('uploads/articlesPictures/'~article.articlePicture.path) }}" alt="{{ article.articlePicture.alt }}" class="img-responsive"/>
-		{% endif %}
+    <div class="bodyContent">
+        <div class="container mt-100">
+            <div class="blogArticle">
+                <h3 class="blogTitle">{{ article.title }}</h3>
+                <p class="mb-20">{{ article.datePost|date('d/m/Y') }}</p>
+                {% if article.articlePicture is not null %}
+                    <div class="row">
+                        <img src="{{  asset('uploads/articlesPictures/'~article.articlePicture.path) }}" alt="{{ article.articlePicture.alt }}" class="img-responsive col-sm-5 mt-10" />
+                        <div style="padding-left: 15px; padding-right: 15px;">{{ article.content|raw }}</div>
+                    </div>
+                {% else %}
+                    {{ article.content|raw }}
+                {% endif %}
 
-		<p class="blogContent">{{ article.content|raw }}</p>
+                <div class="blogComment row">
+                    {% if is_granted('ROLE_USER') %}
 
-		<div class="blogComment">
-			{% if is_granted('ROLE_USER') %}
+                        {{ form_start(form) }}
+                        {{ form_errors(form) }}
 
-                {{ form_start(form) }}
-                {{ form_errors(form) }}
+                        <div class="row form-group col-sm-6 col-xs-12">
+                            {{ form_label(form.content) }}
+                            {{ form_errors(form.content) }}
+                            {{ form_widget(form.content, {'attr': {'class': 'form-control',
+                                'rows': '4'
+                            }}) }}
+                        </div>
 
-                <div class="form-group">
-                    {{ form_label(form.content) }}
-                    {{ form_errors(form.content) }}
-                    {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+                        <div class="row col-sm-12">
+
+                        <input type="submit" value="enregistrer" class="btn btnBlue">
+
+                        {{ form_rest(form) }}
+                        {{ form_end(form) }}
                 </div>
 
-                <input type="submit" value="enregistrer" class="btn btn-default">
+                    {% else %}
+                        <p><a href="{{ path('fos_user_security_login') }}" >Connectez-vous</a> ou <a href="{{ path('fos_user_registration_register')}}">inscrivez-vous</a> pour poster un commentaire</p>
+                    {% endif %}
 
-                {{ form_rest(form) }}
-                {{ form_end(form) }}
-
-            {% else %}
-                <p><a href="{{ path('fos_user_security_login') }}" >Connectez-vous</a> ou <a href="{{ path('fos_user_registration_register')}}">inscrivez-vous</a> pour poster un commentaire</p>
-            {% endif %}
+                    <div class="blogCommentList row col-sm-12">
+                        <h4>Commentaires</h4>
+                        {% if comments is not empty %}
+                            {% for comment in comments %}
+                                <div class="comment">
+                                    <p>Par <b>{{ comment.user.username }}</b> le {{ comment.datePost|date('d/m/Y à H:i') }}</p>
+                                    <p>{{ comment.content }}</p>
+                                    <p><a href="{{ path('pastel_platform_signalComment', { 'id': comment.id })}}">signaler</a></p>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p>Aucun commentaire n'a été posté</p>
+                        {% endif %}
+                    </div>
+                    <div class="row col-sm-12 mt-20">
+                        <a href="{{ path('pastel_platform_blog') }}" class="btn btnBlue pull-right"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Retour</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-		<div class="blogCommentList">
-			<h4>Commentaires</h4>
-			{% if comments is not empty %}
-				{% for comment in comments %}
-					<div class="comment">
-						<p>Par <b>{{ comment.user.username }}</b> le {{ comment.datePost|date('d/m/Y à H:i') }}</p>
-						<p>{{ comment.content }}</p>
-						<p><a href="{{ path('pastel_platform_signalComment', { 'id': comment.id })}}">signaler</a></p>
-					</div>
-				{% endfor %}
-			{% else %}
-				<p>Aucun commentaire n'a été posté</p>
-			{% endif %}
-  		</div>
     </div>
+    
+    <div class="text-center mb-20">
+        <a class="toUp" href="#logo"><i class="fa fa-arrow-circle-o-up fa-3x" aria-hidden="true"></i></a>
+    </div>
+    
     
 {% endblock %}
