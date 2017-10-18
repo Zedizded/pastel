@@ -7,6 +7,16 @@ h1, h2, h3, h4, h5, h6 {
     color: #033e5d;
 }
 
+a {
+    color: #033e5d ;   
+    text-decoration: none;
+}
+
+a:hover {
+    color: #001c2d;   
+    text-decoration: none;
+}
+
 textarea {
     resize: vertical;
     min-height: 94px;
@@ -15,6 +25,11 @@ textarea {
 
 label {
     color: #033e5d;
+    font-weight: 400;
+}
+
+input {
+    border-color: #ded5b7 !important;
 }
 
 ::selection{
@@ -30,18 +45,6 @@ label {
 .bodyContent {
     min-height: 77vh;
 }
-
-/*
-@media screen and (max-width: 768px) {
-    .bodyContent {
-        margin-right: 10px;
-        margin-left: 10px;
-    }
-    .modifLiInter {
-        text-indent: -15px;
-    }
-}
-*/
 
 .mt-0 {
     margin-top: 0px;
@@ -89,6 +92,63 @@ label {
 
 .mb-100 {
     margin-bottom: 100px;
+}
+
+.blue {
+    color: #033e5d;
+}
+
+.blueDark {
+    color: #001c2d;
+}
+
+.beige {
+    color: #ded5b7;
+}
+
+.beigeDark {
+    color: #bcb395;
+}
+
+.wellBlue {
+    background-color: #033e5d;
+    border: 1px solid #001c2d;
+}
+
+.wellBeige {
+    background-color: #ded5b7;
+    border: 1px solid #bcb395;
+}
+
+.myWell {
+    background-color: #fff;
+    border: 1px solid #ded5b7;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0);    
+}
+
+.myCheckbox input {
+    height: 16px;
+    width: 16px;
+    margin-left: 5px;
+    vertical-align: text-bottom;
+}
+
+@media screen and (max-width: 768px) {
+    .myWell {
+        padding-bottom: 120px;
+    }
+}
+
+.g-recaptcha {
+    display: inline-block;
+}
+
+@media screen and (max-width: 490px){ 
+    #rc-imageselect, .g-recaptcha {
+        transform:scale(0.8);
+        -webkit-transform:scale(0.8);
+    } 
 }
 
 
@@ -181,13 +241,7 @@ label {
 }
 
 .footer a {
-    color: #033e5d ;   
     list-style: none;
-    text-decoration: none;
-}
-
-.footer a:hover {
-    color: #001c2d;   
 }
 
 #copyright {

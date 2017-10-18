@@ -5,6 +5,7 @@ namespace Pastel\PlatformBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Vihuvac\Bundle\RecaptchaBundle\Validator\Constraints as Recaptcha;
 
 /**
  * @ORM\Entity
@@ -49,6 +50,11 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Pastel\PlatformBundle\Entity\Comment", mappedBy="user")
      */
      private $comments;    
+    
+    /**
+     * @Recaptcha\IsTrue
+     */
+    public $recaptcha;    
     
     
     public function __construct()

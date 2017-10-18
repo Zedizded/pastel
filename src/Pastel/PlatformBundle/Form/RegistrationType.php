@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Vihuvac\Bundle\RecaptchaBundle\Form\Type\VihuvacRecaptchaType;
 
 
 class RegistrationType extends AbstractType
@@ -18,7 +19,8 @@ class RegistrationType extends AbstractType
             ->add('pastelMember', CheckboxType::class, array(
                 'label'    => 'Membre Pastel',
                 'required' => false,
-            ));
+            ))
+            ->add("recaptcha", VihuvacRecaptchaType::class);
     }
 
     public function getParent()
