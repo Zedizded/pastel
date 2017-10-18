@@ -108,6 +108,11 @@ label {
     color: #033e5d;
     letter-spacing: 1px;
     margin: 5px 0px 0px 5px;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
 }
 
 .navbar-default .navbar-nav>li>a:hover {
@@ -172,6 +177,7 @@ label {
     color: #033e5d ;
     background-color: #ded5b7;
     text-align: center;
+    font-size: 0.9em;
 }
 
 .footer a {
@@ -193,12 +199,6 @@ label {
     padding-top: 30px;
 }
 
-@media screen and (max-width: 992px) {
-    #mentions,
-    #networks {
-        padding-top: 50px;
-    }
-}
 @media screen and (max-width: 767px) {
     #mentions,
     #networks {
@@ -383,7 +383,7 @@ label {
 
 .blogComment, .blogCommentList {
     margin-top: 30px;
-    margin-left: 2px;
+    margin-left: 0px;
 }
 
 .blogCommentList b {

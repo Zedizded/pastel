@@ -1,6 +1,7 @@
 {# src/Pastel/PlatformBundle/Resources/views/Default/creation.html.twig #}
 {% extends "PastelPlatformBundle::layout.html.twig" %}
 
+{% set profilePage = true %}
 
 {% block body %}
 
@@ -40,6 +41,6 @@
 
 {% block javascripts %}
 	{{ parent() }}
-	<script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
+	<script src="https://cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
 	<script src="{{ asset('js/ckeditor.js') }}"></script>
 {% endblock %}

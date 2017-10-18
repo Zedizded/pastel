@@ -1,30 +1,31 @@
 {# src/Pastel/PlatformBundle/Resources/views/Default/article.html.twig #}
 {% extends "PastelPlatformBundle::layout.html.twig" %}
 
+{% set blogPage = true %}
 
 {% block body %}
 
     <div class="bodyContent">
         <div class="container mt-100">
             <div class="blogArticle">
-                <h3 class="blogTitle">{{ article.title }}</h3>
-                <p class="mb-20">{{ article.datePost|date('d/m/Y') }}</p>
+                <h2 class="blogTitle">{{ article.title }}</h2>
+                <p class="mb-30">{{ article.datePost|date('d/m/Y') }}</p>
                 {% if article.articlePicture is not null %}
                     <div class="row">
-                        <img src="{{  asset('uploads/articlesPictures/'~article.articlePicture.path) }}" alt="{{ article.articlePicture.alt }}" class="img-responsive col-sm-5 mt-10" />
+                        <img src="{{  asset('uploads/articlesPictures/'~article.articlePicture.path) }}" alt="{{ article.articlePicture.alt }}" class="img-responsive col-sm-5 mb-10" />
                         <div style="padding-left: 15px; padding-right: 15px;">{{ article.content|raw }}</div>
                     </div>
                 {% else %}
                     {{ article.content|raw }}
                 {% endif %}
 
-                <div class="blogComment row">
+                <div class="blogComment">
                     {% if is_granted('ROLE_USER') %}
 
                         {{ form_start(form) }}
                         {{ form_errors(form) }}
 
-                        <div class="row form-group col-sm-6 col-xs-12">
+                        <div class="form-group">
                             {{ form_label(form.content) }}
                             {{ form_errors(form.content) }}
                             {{ form_widget(form.content, {'attr': {'class': 'form-control',
@@ -32,19 +33,16 @@
                             }}) }}
                         </div>
 
-                        <div class="row col-sm-12">
-
                         <input type="submit" value="enregistrer" class="btn btnBlue">
 
                         {{ form_rest(form) }}
                         {{ form_end(form) }}
-                </div>
 
                     {% else %}
                         <p><a href="{{ path('fos_user_security_login') }}" >Connectez-vous</a> ou <a href="{{ path('fos_user_registration_register')}}">inscrivez-vous</a> pour poster un commentaire</p>
                     {% endif %}
 
-                    <div class="blogCommentList row col-sm-12">
+                    <div class="blogCommentList">
                         <h4>Commentaires</h4>
                         {% if comments is not empty %}
                             {% for comment in comments %}
@@ -58,7 +56,7 @@
                             <p>Aucun commentaire n'a été posté</p>
                         {% endif %}
                     </div>
-                    <div class="row col-sm-12 mt-20">
+                    <div class="mt-10 mb-30">
                         <a href="{{ path('pastel_platform_blog') }}" class="btn btnBlue pull-right"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Retour</a>
                     </div>
                 </div>

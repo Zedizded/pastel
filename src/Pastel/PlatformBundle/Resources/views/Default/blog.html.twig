@@ -27,14 +27,18 @@
                 <p>aucun article trouvé</p>
 
             {% else %}
-                {% for article in articles|reverse %}
+                {% for article in articles %}
                     <div class="blogArticle">
-                        <h3 class="blogTitle">{{ article.title }}</h3>
-                        <p>Posté le {{ article.datePost|date('d-m-Y') }}</p>
+                        <h2 class="blogTitle">{{ article.title }}</h2>
+                        <p>Posté le {{ article.datePost|date('d/m/Y') }}</p>
                         {% if article.articlePicture is not null %}
-                            <img src="{{ asset('uploads/articlesPictures/'~article.articlePicture.path) }}" alt="{{ article.articlePicture.alt }}" class="img-responsive" />
-                        {% endif %}
-                        <p>{{ article.content|truncate(400, true)|raw }}</p>
+						<div class="row">
+							<img src="{{  asset('uploads/articlesPictures/'~article.articlePicture.path) }}" alt="{{ article.articlePicture.alt }}" class="img-responsive col-sm-3 hidden-xs" />
+							<div class="col-sm-9">{{ article.content|truncate(400, true)|raw }}</div>
+						</div>
+					{% else %}
+						{{ article.content|truncate(400, true)|raw }}
+					{% endif %}
                         <p class="blogButton"><a href="{{ path('pastel_platform_article', { 'id': article.id }) }}" class="btn btn-default">Lire la suite</a></p>
                     </div>
                 {% endfor %}
