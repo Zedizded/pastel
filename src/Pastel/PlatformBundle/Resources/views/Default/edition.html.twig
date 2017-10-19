@@ -3,39 +3,56 @@
 
 {% set profilePage = true %}
 
+{% block title %}{{ parent() }} - Édition de l'article "{{ article.title }}"{% endblock %}
+
 {% block body %}
 
-    {{ form_start(form) }}
-    {{ form_errors(form) }}
+    <div class="container bodyContent mb-30">
+        <div class="mt-50">
+            <h2 class="text-center mb-50">Édition de l'article<br>"{{ article.title }}"</h2>
+            <div class="blogArticle">
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
 
-	<div class="form-group">
-		{{ form_label(form.title) }}
-		{{ form_errors(form.title) }}
-		{{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
-	</div>
-	
-	<div class="form-group">
-		{{ form_label(form.content) }}
-		{% if form_errors(form.content) %}
-			<div class="alert alert-danger text-center">
-				{{ form_errors(form.content) }}
-			</div>
-		{% endif %}
-		{{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
-	</div>
-	
-	<div class="form-group">
-		{{ form_widget(form.articlePicture) }}
-	</div>
+                <div class="form-group">
+                    {{ form_label(form.title) }}
+                    {{ form_errors(form.title) }}
+                    {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+                </div>
 
-	{% if article.articlePicture is not null %}
-		<p><a href="{{ path('pastel_platform_pictureSuppression', { 'id': article.articlePicture.id , 'articleId': article.id })}}">Supprimer l'image</a></p>
-	{% endif %}	
-	
-  <input type="submit" value="enregistrer" class="btn btn-default">
+                <div class="form-group">
+                    {{ form_label(form.content) }}
+                    {% if form_errors(form.content) %}
+                        <div class="alert alert-danger text-center">
+                            {{ form_errors(form.content) }}
+                        </div>
+                    {% endif %}
+                    {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+                </div>
 
-    {{ form_rest(form) }}
-    {{ form_end(form) }}
+                <div class="form-group">
+                    <div class="upload">
+                        {{ form_widget(form.articlePicture, {'attr': {'class': 'browse'}}) }}
+                        <span type="button" class="btn fileSelectButton glyphicon glyphicon-camera"></span>
+                    </div>
+                </div>
+
+                {% if article.articlePicture is not null %}
+                    <div>
+                        <img src="{{  asset('uploads/articlesPictures/'~article.articlePicture.path) }}" alt="{{ article.articlePicture.alt }}" class="img-responsive editImage" />
+                        <p class="mt-20 mb-30"><a href="{{ path('pastel_platform_pictureSuppression', { 'id': article.articlePicture.id , 'articleId': article.id })}}"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i> Supprimer l'image</a></p>
+                    </div>
+                {% endif %}
+
+                <div>
+                    <input type="submit" value="enregistrer" class="btn btnBlue">
+                </div>			
+
+                {{ form_rest(form) }}
+                {{ form_end(form) }}
+        </div>
+        </div>
+    </div>
   
 {% endblock %}
 
