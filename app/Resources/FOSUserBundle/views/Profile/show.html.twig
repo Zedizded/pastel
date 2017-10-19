@@ -2,6 +2,8 @@
 
 {% set profilePage = true %}
 
+{% block title %}{{ parent() }} - Profil{% endblock %}
+
 {% block fos_user_content %}
 {% include "@FOSUser/Profile/show_content.html.twig" %}
 {% endblock fos_user_content %}
