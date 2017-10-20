@@ -10,7 +10,7 @@
 
 
             {% if is_granted('ROLE_PASTEL') %}
-                <div class="container col-sm-8 col-sm-offset-2 profilNav">
+                <div id="test" class="container col-sm-8 col-sm-offset-2 profilNav">
                 <ul class="nav nav-pills nav-justified">
                     <li class="active"><a data-toggle="tab" href="#profil">Profil</a></li>
                     <li><a data-toggle="tab" href="#valider">Télécharger</a></li>
@@ -22,7 +22,7 @@
                 </div>
             {% endif %}
 
-            <div class="tab-content col-sm-8 col-sm-offset-2 well myWellBottom">
+            <div class="tab-content col-sm-8 col-sm-offset-2 well myWell">
                 <div id="profil" class="tab-pane fade in active">
                     <div class="row">
                         <h3 class="mt-0 mb-30 text-center">Mon profil</h3>
@@ -35,10 +35,10 @@
                             <p class="mb-10">{{ 'profile.show.email'|trans }} : <b>{{ user.email }}</b></p>
                         </div>
                         <div class="col-md-5 col-md-offset-1">
-                            <p class="mt-30"><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> modifier mes informations</a></p>
+                            <p class="mt-30"><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Modifier mes informations</a></p>
                         </div>
                         <div class="col-md-5 col-md-offset-1">
-                            <p class="mt-30"><a href="{{ path('fos_user_change_password') }}"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> modifier mon mot de passe</a></p>
+                            <p class="mt-30"><a href="{{ path('fos_user_change_password') }}"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i> Modifier mon mot de passe</a></p>
                         </div>
                     </div>
                 </div>

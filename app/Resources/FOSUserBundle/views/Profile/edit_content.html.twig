@@ -1,8 +1,53 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
-    </div>
-{{ form_end(form) }}
+    <div class="container bodyContent mb-30">
+        <div class="mt-50">
+            <h2 class="text-center mb-50">Mes Informations</h2>
+            <div class="col-sm-8 col-sm-offset-2 well myWell">
+
+                {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+                    
+                <div class="form-group col-sm-8 col-sm-offset-2">
+                    {{ form_label(form.username) }}
+                    {{ form_errors(form.username) }}
+                    {{ form_widget(form.username, {'attr': {'class': 'form-control loginInput'}}) }}
+                </div>
+
+                <div class="form-group col-sm-8 col-sm-offset-2">
+                    {{ form_label(form.email) }}
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control loginInput'}}) }}
+                </div>
+
+                <div class="form-group col-sm-8 col-sm-offset-2">
+                    {{ form_label(form.firstName) }}
+                    {{ form_errors(form.firstName) }}
+                    {{ form_widget(form.firstName, {'attr': {'class': 'form-control loginInput'}}) }}
+                </div>
+
+                <div class="form-group col-sm-8 col-sm-offset-2">
+                    {{ form_label(form.lastName) }}
+                    {{ form_errors(form.lastName) }}
+                    {{ form_widget(form.lastName, {'attr': {'class': 'form-control loginInput'}}) }}
+                </div>
+
+                <div class="form-group col-sm-8 col-sm-offset-2">
+                    {{ form_label(form.current_password) }}
+                    {{ form_errors(form.current_password) }}
+                    {{ form_widget(form.current_password, {'attr': {'class': 'form-control loginInput'}}) }}
+                </div>
+                
+                {{ form_widget(form) }}
+                <div class="col-sm-12 text-center mt-20 mb-10">
+                    <input type="submit" value="{{ 'profile.edit.submit'|trans }}" class="btn btnBlue" />
+                </div>
+                {{ form_end(form) }}
+		    </div>
+           
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="col-sm-12 text-center mt-20 mb-10">
+                    <a href="{{ path('fos_user_profile_show') }}" class="btn btnBlue">Retour au profil</a>
+                </div>
+            </div>
+        </div>
+	</div>

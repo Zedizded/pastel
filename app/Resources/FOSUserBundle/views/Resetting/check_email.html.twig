@@ -1,9 +1,16 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
-{% trans_default_domain 'FOSUserBundle' %}
+	{% block title %}{{ parent() }} - Mot de passe perdu{% endblock %}
 
-{% block fos_user_content %}
-<p>
-{{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
-</p>
-{% endblock %}
+	{% block fos_user_content %}
+        <div class="container bodyContent mb-30">
+            <div class="mt-50">
+                <h2 class="text-center mb-50">Mot de passe perdu</h2>
+                <div class="col-sm-8 col-sm-offset-2 well myWell">
+                    <p>Un email a été envoyé. Il contient un lien sur lequel il vous faudra cliquer pour réinitialiser votre mot de passe.<br>
+                    Remarque : Vous ne pouvez demander un nouveau mot de passe que toutes les 2 heures.<br>
+                    Si vous ne recevez pas d'email, vérifiez votre dossier spam ou essayez à nouveau.</p>
+                </div>
+            </div>
+		</div>
+	{% endblock %}

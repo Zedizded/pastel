@@ -32,10 +32,10 @@
                     <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn btnBlue" />
                 </div>
                 
-                <p class="col-sm-6 col-xs-12 mt-20 text-center"><a href="#">Mot de passe oublié</a></p>
+                <p class="col-sm-6 col-xs-12 mt-20 text-center"><a href="{{ path('fos_user_resetting_request')}}">Mot de passe oublié</a></p>
                 </form>
                 
-                <p class="col-sm-6 col-xs-12 mt-20 text-center">Pas encore inscrit ? <a href="#">C'est ici</a></p>
+                <p class="col-sm-6 col-xs-12 mt-20 text-center">Pas encore inscrit ? <a href="{{ path('fos_user_registration_register')}}">C'est ici</a></p>
             </div>
         </div>
     </div>

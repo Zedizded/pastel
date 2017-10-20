@@ -44,17 +44,13 @@ class User extends BaseUser
     /**
      * @ORM\OneToMany(targetEntity="Pastel\PlatformBundle\Entity\Article", mappedBy="user")
      */
-     private $articles;
+    private $articles;
  
-     /**
+    /**
      * @ORM\OneToMany(targetEntity="Pastel\PlatformBundle\Entity\Comment", mappedBy="user")
      */
-     private $comments;    
+    private $comments;    
     
-    /**
-     * @Recaptcha\IsTrue
-     */
-    public $recaptcha;    
     
     
     public function __construct()

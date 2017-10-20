@@ -63,10 +63,10 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: '%mailer_transport%'
-    host: '%mailer_host%'
-    username: '%mailer_user%'
-    password: '%mailer_password%'
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
     spool: { type: memory }
     
 # FOSUser Configuration
@@ -75,14 +75,14 @@ fos_user:
     firewall_name: main
     user_class: Pastel\PlatformBundle\Entity\User
     from_email:
-        address: "%mailer_user%"
-        sender_name: "%mailer_user%"
+        address: '%mailer_user%'
+        sender_name: '%mailer_user%'
     registration:
         form:
             type: Pastel\PlatformBundle\Form\RegistrationType
     profile:
         form:
-            type: OC\PlatformBundle\Form\ProfileFormType
+            type: Pastel\PlatformBundle\Form\ProfileFormType
             
 vihuvac_recaptcha:
     site_key:   6LfckjEUAAAAANTyZeOOeVj6kUfqaBFHhCI-ROq5
