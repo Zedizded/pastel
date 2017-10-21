@@ -1,0 +1,26 @@
+{% extends "PastelPlatformBundle::layout.html.twig" %}
+
+{% block title %}{{ parent () }} - Page introuvable{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+	<link href="{{ asset('css/pastel_error.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+
+<div id="navHeight"></div>   
+<div class="container bodyContent">
+    <div class="oups col-xs-12">
+       <h1 class="col-xs-12">Oups !</h1>
+       <h2 class="col-xs-12">Le server retourne "{{ status_code }} {{ status_text }}".</h2>
+       <p id="allError" class="col-xs-12">Quelque chose est cassé.<br>
+       Merci de nous faire savoir comment cette erreur est survenue, nous la reparerons le plus vite possible.<br>
+       <span><b>Désolé du dérangement.</b></span></p>
+    </div>
+        
+</div>
+
+{% endblock %}

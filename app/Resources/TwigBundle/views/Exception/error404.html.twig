@@ -1,0 +1,25 @@
+{% extends "PastelPlatformBundle::layout.html.twig" %}
+
+{% block title %}{{ parent () }} - Page introuvable{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+	<link href="{{ asset('css/pastel_error.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+
+<div id="navHeight"></div>   
+<div class="container bodyContent">
+    <div class="oups col-xs-12">
+       <h1 class="col-xs-12">Oups !</h1>
+       <p class="col-xs-12">La page que vous cherchez semble<br>
+       <span><b>introuvable</b></span></p>
+       <h1 id="katsankatre" class="col-xs-12">404</h1>
+    </div>
+        
+</div>
+
+{% endblock %}

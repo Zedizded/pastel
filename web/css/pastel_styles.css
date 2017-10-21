@@ -567,3 +567,95 @@ tr:hover {
 }
 
 
+/************************** Errors **************************/
+#navHeight {
+    width: 100%;
+    height: 30px;
+    background-color: #fff;
+}
+
+.oups {
+    padding-bottom: 15px;
+    padding-right: 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.oups h1 {
+    font-size: 9em;
+    font-weight: 700;
+    color: #ded5b7;
+    text-shadow: 3px 3px 9px #333;
+    margin-top: 0px;
+}
+
+.oups p {
+    display: inline-block;
+    font-size: 2.2em;
+    text-align: center;
+    line-height: 40px;
+    margin-top: 50px;
+    color: #fff;
+    text-shadow: 1px 1px 5px #333;
+}
+
+.oups span {
+    font-size: 3em;
+    color: #ded5b7;
+}
+
+#allError {
+    font-size: 1.2em;
+    text-align: left;
+    line-height: normal;
+}
+
+#allError span {
+    font-size: 2em;
+}
+
+#katsankatre {
+    display: inline-block;
+    font-size: 10em;
+    color: #ded5b7;
+    text-align: right;
+    text-shadow: 4px 4px 16px #333;
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .oups p {
+        font-size: 1.8em;
+    }
+
+@media screen and (max-width: 490px) {
+    #error {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    .oups h1 {
+        font-size: 5.5em;
+        text-align: center;
+    }
+    .oups p {
+        padding-right: 7px;
+        padding-left: 7px;
+        font-size: 1.2em;
+        text-align: center;
+        line-height: 29px;
+        margin-top: 15px;
+    }
+    #katsankatre {
+        font-size: 9em;
+        text-shadow: 4px 4px 16px #333;
+        margin-top: 0px;
+        text-align: center;
+        margin-top: 10px;
+    }
+    #allError {
+        font-size: 0.9em;
+    }
+    #allError span {
+        font-size: 1.6em;
+    }
+}
