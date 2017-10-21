@@ -22,12 +22,14 @@ class ProfileController extends BaseController
 
         $articles = $em->getRepository('PastelPlatformBundle:Article')->findAll();
         $comments = $em->getRepository('PastelPlatformBundle:Comment')->findBy(array('warning' => '1'));
+        $UsersToValid = $em->getRepository('PastelPlatformBundle:User')->findBy(array('pastelMember' => 1));
         
 
         return $this->render('@FOSUser/Profile/show.html.twig', array(
             'user' => $user,
             'articles' => $articles,
-            'comments' => $comments            
+            'comments' => $comments,
+            'UsersToValid' => $UsersToValid
         ));
     }
 

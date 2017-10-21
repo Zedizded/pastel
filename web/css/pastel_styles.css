@@ -546,7 +546,8 @@ tr:hover {
     color: #033e5d;
 }
 
-.table>thead>tr>th:hover {
+th,
+th:hover {
     background-color: #fff !important;
     color: #7b7b7b !important;
 }

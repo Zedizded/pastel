@@ -183,7 +183,7 @@ class PlatformController extends Controller
 
 	}    
     
-/**
+    /**
      * @Route("/actualites/suppression/{id}", name="pastel_platform_suppression")
      */
 	public function suppressionAction(Request $request, Article $article, $id)
@@ -195,7 +195,7 @@ class PlatformController extends Controller
 			$em->remove($article);
 			$em->flush();
 
-			$request->getSession()->getFlashBag()->add('info', "L'article a bien été supprimé");
+			$request->getSession()->getFlashBag()->add('info', 'L\'article a bien été supprimé');
 
 			return $this->redirectToRoute('fos_user_profile_show');
 		}
@@ -215,7 +215,7 @@ class PlatformController extends Controller
 			$comment->setWarning(false);
 			$em->flush();
 
-			$request->getSession()->getFlashBag()->add('info', "Le commentaire a bien été validé");
+			$request->getSession()->getFlashBag()->add('info', 'Le commentaire a bien été validé');
 
 			return $this->redirectToRoute('fos_user_profile_show');
 		}
@@ -236,7 +236,7 @@ class PlatformController extends Controller
 			$em->remove($comment);
 			$em->flush();
 
-			$request->getSession()->getFlashBag()->add('info', "Le commentaire a bien été supprimé");
+			$request->getSession()->getFlashBag()->add('info', 'Le commentaire a bien été supprimé');
 
 			return $this->redirectToRoute('fos_user_profile_show');
 		}
@@ -257,7 +257,7 @@ class PlatformController extends Controller
 			$em->remove($articlePicture);
 			$em->flush();
 
-			$request->getSession()->getFlashBag()->add('info', "L'image a été supprimée");
+			$request->getSession()->getFlashBag()->add('info', 'L\'image a été supprimée');
 
 			return $this->redirectToRoute('pastel_platform_edition',  array('id' => $articleId));
 		}
@@ -297,6 +297,49 @@ class PlatformController extends Controller
         return $this->render('PastelPlatformBundle:Default:contact.html.twig', array(
             'form' => $form->createView(),
         ));
+
+    }
+    
+    /**
+     * @Route("/profil/userValidation/{id}", name="pastel_platform_userValidation")
+     */
+    public function userValidationAction(Request $request, User $user, $id)
+    {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            
+            $em = $this->getDoctrine()->getManager();
+
+            $user->setPastelMember(0);
+            $user->addRole('ROLE_PASTEL');
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('info', 'Validation réussie');
+
+            return $this->redirectToRoute('fos_user_profile_show');
+        }
+
+        return $this->redirectToRoute('pastel_platform_homepage');
+
+    }
+
+    /**
+     * @Route("/profil/userReset/{id}", name="pastel_platform_userReset")
+     */
+    public function userResetAction(Request $request, User $user, $id)
+    {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            
+            $em = $this->getDoctrine()->getManager();
+
+            $user->setPastelMember(0);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('info', 'Mise à jour de l\'utilisateur réussie');
+
+            return $this->redirectToRoute('fos_user_profile_show');
+        }
+
+        return $this->redirectToRoute('pastel_platform_homepage');
 
     }
 }
