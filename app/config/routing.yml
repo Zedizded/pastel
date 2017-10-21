@@ -7,3 +7,32 @@ fos_user:
     
 fos_user_registration_confirmed:
     path: /profile
+    defaults:  { _controller: FOSUserBundle:Profile:show }
+
+fos_user_change_password:
+    path: /profil/mot-de-passe
+    defaults:  { _controller: FOSUserBundle:ChangePassword:changePassword }
+
+fos_user_profile_show:
+    path: /profil
+    defaults:  { _controller: FOSUserBundle:Profile:show }
+
+fos_user_profile_edit:
+    path: /profil/mes-informations
+    defaults:  { _controller: FOSUserBundle:Profile:edit }
+
+fos_user_security_login:
+    path: /connexion
+    defaults:  { _controller: FOSUserBundle:Security:login }
+
+fos_user_registration_register:
+    path: /inscription
+    defaults:  { _controller: FOSUserBundle:Registration:register }
+
+fos_user_resetting_request:
+    path: /requete
+    defaults:  { _controller: FOSUserBundle:Resetting:request }
+
+fos_user_resetting_check_email:
+    path: /envoi
+    defaults:  { _controller: FOSUserBundle:Resetting:checkEmail }
