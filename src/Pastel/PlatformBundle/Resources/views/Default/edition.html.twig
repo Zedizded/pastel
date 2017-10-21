@@ -11,6 +11,15 @@
 
 {% block body %}
 
+    <div class="container">
+        {% for flashMessage in app.session.flashbag.get('info') %}
+            <div class="row alert alert-success alert-dismissible mt-50 mb-30">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+    </div>
+
     <div class="container bodyContent mb-30">
         <div class="mt-50">
             <h2 class="text-center mb-50">Édition de l'article<br>"{{ article.title }}"</h2>
@@ -49,7 +58,7 @@
                 {% endif %}
 
                 <div>
-                    <input type="submit" value="enregistrer" class="btn btnBlue">
+                    <input type="submit" value="Enregistrer" class="btn btnBlue">
                 </div>			
 
                 {{ form_rest(form) }}

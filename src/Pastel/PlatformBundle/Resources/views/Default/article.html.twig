@@ -11,6 +11,15 @@
 
 {% block body %}
 
+    <div class="container">
+        {% for flashMessage in app.session.flashbag.get('info') %}
+            <div class="row alert alert-success alert-dismissible mt-50 mb-30">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+    </div>
+
     <div class="bodyContent">
         <div class="container mt-100">
             <div class="blogArticle">
@@ -39,7 +48,7 @@
                             }}) }}
                         </div>
 
-                        <input type="submit" value="enregistrer" class="btn btnBlue">
+                        <input type="submit" value="Enregistrer" class="btn btnBlue">
 
                         {{ form_rest(form) }}
                         {{ form_end(form) }}
@@ -55,7 +64,7 @@
                                 <div class="comment">
                                     <p>Par <b>{{ comment.user.username }}</b> le {{ comment.datePost|date('d/m/Y à H:i') }}</p>
                                     <p>{{ comment.content }}</p>
-                                    <p><a href="{{ path('pastel_platform_signalComment', { 'id': comment.id })}}">signaler</a></p>
+                                    <p><a href="{{ path('pastel_platform_signalComment', { 'id': comment.id })}}">Signaler</a></p>
                                 </div>
                             {% endfor %}
                         {% else %}

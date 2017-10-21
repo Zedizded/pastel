@@ -10,7 +10,7 @@
    
     <div class="container">
         {% for flashMessage in app.session.flashbag.get('info') %}
-            <div class="container alert alert-success alert-dismissible mt-30 mb-30">
+            <div class="row alert alert-success alert-dismissible mt-50 mb-30">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 {{ flashMessage }}
             </div>

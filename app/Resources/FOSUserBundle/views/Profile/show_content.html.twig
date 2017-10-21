@@ -1,13 +1,17 @@
 {% trans_default_domain 'FOSUserBundle' %}
     
+    <div class="container">
+        {% for flashMessage in app.session.flashbag.get('info') %}
+            <div class="row alert alert-success alert-dismissible mt-50 mb-30">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+
     <div class="container bodyContent mb-30">
         <div class="mt-50">
             <h2 class="text-center mb-50">Bonjour {{ user.username }},<br>bienvenue dans votre espace personnel</h2>
-
-            {% for message in app.session.flashbag.get('info') %}
-                <p>{{ message }}</p>
-            {% endfor %}
-
 
             {% if is_granted('ROLE_PASTEL') %}
                 <div class="container col-sm-8 col-sm-offset-2 profilNav">
