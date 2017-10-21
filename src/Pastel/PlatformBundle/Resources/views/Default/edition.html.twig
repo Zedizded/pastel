@@ -5,6 +5,10 @@
 
 {% block title %}{{ parent() }} - Édition de l'article "{{ article.title }}"{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
 {% block body %}
 
     <div class="container bodyContent mb-30">

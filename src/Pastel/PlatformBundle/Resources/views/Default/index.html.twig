@@ -3,6 +3,10 @@
 
 {% set homePage = true %}
    
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
 {% block body %}
    
     <div id="carousel" class="carousel slide" data-ride="carousel">

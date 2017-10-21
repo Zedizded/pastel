@@ -5,6 +5,7 @@ namespace Pastel\PlatformBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Pastel\PlatformBundle\Form\ContactType;
 use Pastel\PlatformBundle\Entity\User;
 use Pastel\PlatformBundle\Entity\Article;
 use Pastel\PlatformBundle\Entity\ArticlePicture;
@@ -13,6 +14,7 @@ use Pastel\PlatformBundle\Form\ArticleType;
 use Pastel\PlatformBundle\Form\CommentType;
 use Pastel\PlatformBundle\Entity\Search;
 use Pastel\PlatformBundle\Form\SearchType;
+use Swift_Message;
 
 class PlatformController extends Controller
 {	
@@ -25,7 +27,7 @@ class PlatformController extends Controller
 	}
     
 	/**
-     * @Route("/blog", name="pastel_platform_blog")
+     * @Route("/actualites", name="pastel_platform_blog")
      */
 	public function blogAction(Request $request)
 	{
@@ -55,7 +57,7 @@ class PlatformController extends Controller
 	}    
 
 	/**
-     * @Route("/blog/creation", name="pastel_platform_creation")
+     * @Route("/actualites/creation", name="pastel_platform_creation")
      */
     public function creationAction(Request $request)
 	{
@@ -97,7 +99,7 @@ class PlatformController extends Controller
 	}
     
 	/**
-     * @Route("/blog/edition/{id}", name="pastel_platform_edition")
+     * @Route("/actualites/edition/{id}", name="pastel_platform_edition")
      */
 	public function editionAction(Request $request, Article $article, $id)
 	{
@@ -133,7 +135,7 @@ class PlatformController extends Controller
 	}
     
 	/**
-     * @Route("/blog/article/{id}", name="pastel_platform_article")
+     * @Route("/actualites/article/{id}", name="pastel_platform_article")
      */
 	public function articleAction(Request $request, Article $article, $id)
 	{
@@ -166,7 +168,7 @@ class PlatformController extends Controller
 	}
     
 	/**
-     * @Route("/blog/comment/{id}", name="pastel_platform_signalComment")
+     * @Route("/actualites/comment/{id}", name="pastel_platform_signalComment")
      */
 	public function signalCommentAction(Request $request, Comment $comment, $id)
 	{
@@ -182,7 +184,7 @@ class PlatformController extends Controller
 	}    
     
 /**
-     * @Route("/blog/suppression/{id}", name="pastel_platform_suppression")
+     * @Route("/actualites/suppression/{id}", name="pastel_platform_suppression")
      */
 	public function suppressionAction(Request $request, Article $article, $id)
 	{
@@ -202,7 +204,7 @@ class PlatformController extends Controller
 	}
 
 	/**
-     * @Route("/blog/commentValidation/{id}", name="pastel_platform_commentValidation")
+     * @Route("/actualites/commentValidation/{id}", name="pastel_platform_commentValidation")
      */
 	public function commentValidationAction(Request $request, Comment $comment, $id)
 	{
@@ -223,7 +225,7 @@ class PlatformController extends Controller
 	}
 
 	/**
-     * @Route("/blog/commentSuppression/{id}", name="pastel_platform_commentSuppression")
+     * @Route("/actualites/commentSuppression/{id}", name="pastel_platform_commentSuppression")
      */
 	public function commentSuppressionAction(Request $request, Comment $comment, $id)
 	{
@@ -244,7 +246,7 @@ class PlatformController extends Controller
 	}    
     
 	/**
-     * @Route("/blog/pictureSuppression/{id}/{articleId}", name="pastel_platform_pictureSuppression")
+     * @Route("/actualites/pictureSuppression/{id}/{articleId}", name="pastel_platform_pictureSuppression")
      */
 	public function pictureSuppressionAction(Request $request, ArticlePicture $articlePicture, $id, $articleId)
 	{
@@ -262,5 +264,39 @@ class PlatformController extends Controller
 
 		return $this->redirectToRoute('pastel_platform_homepage');
 
-	}    
+	}  
+    
+    /**
+     * @Route("/contact", name="pastel_platform_contact")
+     */
+    public function contactAction(Request $request)
+    {
+        $form = $this->get('form.factory')->create(ContactType::class);
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $post = $request->request->get('pastel_platformbundle_contact_form');
+            $message = new Swift_Message();
+            $message->setSubject('Message du site "Castres Pastel"')
+            ->setFrom(array('lions.castrespastel@gmail.com' => 'Lions Club Castres Pastel'))
+                ->setTo('lions.castrespastel@gmail.com')
+                ->setContentType('text/html')
+                ->setCharset('utf-8')
+                ->setBody(
+                    $this->renderView('PastelPlatformBundle:Default:email.html.twig',
+                        array('post' => $post)));
+            $this->get('mailer')->send($message);
+
+            $form = $this->get('form.factory')->create(ContactType::class);
+
+            $request->getSession()->getFlashBag()->add('info', 'Votre message a bien été envoyé.');
+            return $this->render('PastelPlatformBundle:Default:contact.html.twig', array(
+                'form' => $form->createView(),
+            ));
+        }
+
+        return $this->render('PastelPlatformBundle:Default:contact.html.twig', array(
+            'form' => $form->createView(),
+        ));
+
+    }
 }
