@@ -342,4 +342,12 @@ class PlatformController extends Controller
         return $this->redirectToRoute('pastel_platform_homepage');
 
     }
+    
+    /**
+     * @Route("/Mentions-legales", name="pastel_platform_mentions")
+     */
+	public function mentionsAction()
+	{
+		return $this->render('PastelPlatformBundle:Default:mentions.html.twig');
+	}
 }

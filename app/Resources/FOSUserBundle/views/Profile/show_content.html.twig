@@ -142,36 +142,34 @@
                         </div>
                     </div>
                     <div id="pastel" class="tab-pane fade">
-					<div class="login">
-						<h3 class="text-center mb-20">Membre(s) Pastel en attente</h3>
+						<h3 class="mt-0 mb-30 text-center">Membre(s) Pastel en attente</h3>
 						{% if UsersToValid is empty %}
 							<p class="text-center">Aucun membre Pastel à valider</p>
 						{% else %}
 							<table class="table table-responsive">
 								<thead>
-										<tr>
-											<th>Pseudo</th>
-											<th>Nom</th>
-											<th>Prénom</th>
-										</tr>
-									</thead>
-									<tbody>
-										{% for user in UsersToValid %}
-											<tr>
-												<td>{{ user.username }}</td>
-												<td >{{ user.firstName }}</td>
-												<td>{{ user.lastName }}</td>
-												<td>
-													<a href="{{ path('pastel_platform_userValidation', { 'id': user.id }) }}" title="Valider" class="center col-sm-6"><i class="fa fa-check fa-lg mb-10" aria-hidden="true"></i></a>
-													<a href="{{ path('pastel_platform_userReset', { 'id': user.id }) }}" title="Ne pas valider"  class="center col-sm-6"><i class="fa fa-times-circle fa-lg" aria-hidden="true"></i></a>
-												</td>
-											</tr>
-										{% endfor %}
-									</tbody>
-								</table>
+                                    <tr>
+                                        <th>Pseudo</th>
+                                        <th>Nom</th>
+                                        <th>Prénom</th>
+                                    </tr>
+								</thead>
+								<tbody>
+                                    {% for user in UsersToValid %}
+                                        <tr>
+                                            <td>{{ user.username }}</td>
+                                            <td >{{ user.firstName }}</td>
+                                            <td>{{ user.lastName }}</td>
+                                            <td>
+                                                <a href="{{ path('pastel_platform_userValidation', { 'id': user.id }) }}" title="Valider" class="center col-sm-6"><i class="fa fa-check fa-lg mb-10" aria-hidden="true"></i></a>
+                                                <a href="{{ path('pastel_platform_userReset', { 'id': user.id }) }}" title="Ne pas valider"  class="center col-sm-6"><i class="fa fa-times-circle fa-lg" aria-hidden="true"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
 						{% endif %}
-					</div>
-				</div>
+				    </div>
                 {% endif %}
                 {#{% if is_granted('ROLE_PASTEL') %}
                     <div id="valider" class="tab-pane fade">
