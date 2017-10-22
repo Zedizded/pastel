@@ -31,6 +31,7 @@ class PlatformController extends Controller
      */
 	public function blogAction(Request $request)
 	{
+        // Creates the search type for the blog
         $search = new Search();
 		$form   = $this->get('form.factory')->create(SearchType::class, $search);
         
@@ -38,7 +39,8 @@ class PlatformController extends Controller
 
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
-			$content = $search->getContent();
+			// If a search has been submitted, shows items matching the search
+            $content = $search->getContent();
 
 			$articles = $em->getRepository('PastelPlatformBundle:Article')->complexFind($content);
 
@@ -47,6 +49,7 @@ class PlatformController extends Controller
 
 		} 
 		else {
+            // Shows all articles
 			$articles = $em->getRepository('PastelPlatformBundle:Article')->classicFind();
 		}
 
@@ -63,13 +66,14 @@ class PlatformController extends Controller
 	{
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
 
+            // Creation of a new blog's article
             $article = new Article();
 			$form = $this->get('form.factory')->create(ArticleType::class, $article);
             
             if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
-				$em = $this->getDoctrine()->getManager();
-                
+				// Records the new article in the database
+                $em = $this->getDoctrine()->getManager();
 				$article->setUser($this->getUser());
 				$em->persist($article);
                 
@@ -103,10 +107,10 @@ class PlatformController extends Controller
      */
 	public function editionAction(Request $request, Article $article, $id)
 	{
-		
 		if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
 			
-			$form = $this->get('form.factory')->create(ArticleType::class, $article);
+			// Modification of the article of id "$id" (already present in the database)
+            $form = $this->get('form.factory')->create(ArticleType::class, $article);
 
 			if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
@@ -121,7 +125,8 @@ class PlatformController extends Controller
 					$em->persist($articlePicture);
 				}
                 
-				$em->flush();
+				// Saves the modified article in the database
+                $em->flush();
                 
                 $request->getSession()->getFlashBag()->add('info', 'Votre article a bien été enregistré.');
 			}
@@ -139,15 +144,16 @@ class PlatformController extends Controller
      */
 	public function articleAction(Request $request, Article $article, $id)
 	{
-
-		$comment = new Comment();
+		// Creates a new comment
+        $comment = new Comment();
 		$form = $this->get('form.factory')->create(CommentType::class, $comment);
 
 		$em = $this->getDoctrine()->getManager();
 
 		if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
-			$comment->setUser($this->getUser());
+			// If a new comment is entered, saves it in the database
+            $comment->setUser($this->getUser());
 			$comment->setArticle($article);
             
 			$em->persist($comment);
@@ -174,7 +180,8 @@ class PlatformController extends Controller
 	{
 		$em = $this->getDoctrine()->getManager();
 
-		$comment->setWarning(true);
+		// Registers a warning in the database when a comment is reported
+        $comment->setWarning(true);
 		$em->flush();
 
 		$request->getSession()->getFlashBag()->add('info', 'Le commentaire a bien été signalé.');
@@ -192,7 +199,8 @@ class PlatformController extends Controller
 			
 			$em = $this->getDoctrine()->getManager();
 
-			$em->remove($article);
+			// Removes an article already present in the database from it
+            $em->remove($article);
 			$em->flush();
 
 			$request->getSession()->getFlashBag()->add('info', 'L\'article a bien été supprimé');
@@ -212,7 +220,8 @@ class PlatformController extends Controller
 			
 			$em = $this->getDoctrine()->getManager();
 
-			$comment->setWarning(false);
+			// If a warning has been register on a comment but is not justified, deletes this warning
+            $comment->setWarning(false);
 			$em->flush();
 
 			$request->getSession()->getFlashBag()->add('info', 'Le commentaire a bien été validé');
@@ -233,7 +242,8 @@ class PlatformController extends Controller
 			
 			$em = $this->getDoctrine()->getManager();
 
-			$em->remove($comment);
+			// If a warning has been register on a comment and is justified, deletes the comment from the database
+            $em->remove($comment);
 			$em->flush();
 
 			$request->getSession()->getFlashBag()->add('info', 'Le commentaire a bien été supprimé');
@@ -254,7 +264,8 @@ class PlatformController extends Controller
 			
 			$em = $this->getDoctrine()->getManager();
 
-			$em->remove($articlePicture);
+			// Removes from the database a picture associated with an article
+            $em->remove($articlePicture);
 			$em->flush();
 
 			$request->getSession()->getFlashBag()->add('info', 'L\'image a été supprimée');
@@ -276,6 +287,7 @@ class PlatformController extends Controller
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $post = $request->request->get('pastel_platformbundle_contact_form');
             $message = new Swift_Message();
+            // Defines the parameters of the message
             $message->setSubject('Message du site "Castres Pastel"')
             ->setFrom(array('lions.castrespastel@gmail.com' => 'Lions Club Castres Pastel'))
                 ->setTo('lions.castrespastel@gmail.com')
@@ -284,6 +296,7 @@ class PlatformController extends Controller
                 ->setBody(
                     $this->renderView('PastelPlatformBundle:Default:email.html.twig',
                         array('post' => $post)));
+            // Sends the message
             $this->get('mailer')->send($message);
 
             $form = $this->get('form.factory')->create(ContactType::class);
@@ -309,6 +322,7 @@ class PlatformController extends Controller
             
             $em = $this->getDoctrine()->getManager();
 
+            // Promotes an user as Pastel Member
             $user->setPastelMember(0);
             $user->addRole('ROLE_PASTEL');
             $em->flush();
@@ -331,6 +345,7 @@ class PlatformController extends Controller
             
             $em = $this->getDoctrine()->getManager();
 
+            // Refuses the status of naturalist and deletes hold
             $user->setPastelMember(0);
             $em->flush();
 

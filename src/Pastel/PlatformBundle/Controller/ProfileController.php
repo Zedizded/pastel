@@ -20,6 +20,7 @@ class ProfileController extends BaseController
         
         $em = $this->getDoctrine()->getManager();
 
+        // Get back and returns all data associated with an user
         $articles = $em->getRepository('PastelPlatformBundle:Article')->findAll();
         $comments = $em->getRepository('PastelPlatformBundle:Comment')->findBy(array('warning' => '1'));
         $UsersToValid = $em->getRepository('PastelPlatformBundle:User')->findBy(array('pastelMember' => 1));

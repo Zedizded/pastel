@@ -75,15 +75,15 @@
                                                     <button type="button" title="Supprimer" class="erase col-sm-4 center" data-toggle="modal" data-target="#articleDialog{{ article.id }}"><i class="fa fa-times-circle fa-lg" aria-hidden="true"></i></button>
                                                 </td>
                                             </tr>
-                                            <div class="modal fade" id="articleDialog{{ article.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="articleDialog{{ article.id }}" tabindex="-1" role="dialog" aria-labelledby="modalLabelArticle" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                            <h4 class="modal-title" id="myModalLabel">Confirmation requise</h4>
+                                                            <h4 class="modal-title" id="modalLabelArticle">Confirmation requise</h4>
                                                         </div>
                                                         <div class="modal-body">
-                                                            Voulez vous supprimer cette article ?
+                                                            Voulez-vous supprimer cette article ?
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
@@ -99,7 +99,7 @@
                             <h4>Commentaires signalés</h4>
                             <div class="blogMaxHeight">
                                 {% if comments is empty %}
-                                    <p>aucun commentaire signalé</p>
+                                    <p>Aucun commentaire signalé</p>
                                 {% else %}
                                     <table class="table table-responsive">
                                         <thead>
@@ -114,18 +114,18 @@
                                                     <td class="col-sm-3">
                                                         <a href="{{ path('pastel_platform_article', { 'id': comment.article.id }) }}" title="Voir" class="col-sm-4 center"><i class="fa fa-eye fa-lg mb-10" aria-hidden="true"></i></a>
                                                         <a href="{{ path('pastel_platform_commentValidation', { 'id': comment.id }) }}" title="Valider" class="col-sm-4 center"><i class="fa fa-check fa-lg mb-10" aria-hidden="true"></i></a>
-                                                        <button type="button" title="Supprimer" data-toggle="modal" class="erase col-sm-4 center" data-target="#articleDialog{{ comment.id }}"><i class="fa fa-times-circle fa-lg" aria-hidden="true"></i></button>
+                                                        <button type="button" title="Supprimer" data-toggle="modal" class="erase col-sm-4 center" data-target="#commentDialog{{ comment.id }}"><i class="fa fa-times-circle fa-lg" aria-hidden="true"></i></button>
                                                     </td>
                                                 </tr>
-                                                <div class="modal fade" id="articleDialog{{ comment.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="commentDialog{{ comment.id }}" tabindex="-1" role="dialog" aria-labelledby="modalLabelComment" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                <h4 class="modal-title" id="myModalLabel">Confirmation requise</h4>
+                                                                <h4 class="modal-title" id="modalLabelComment">Confirmation requise</h4>
                                                             </div>
                                                             <div class="modal-body">
-                                                                Voulez vous supprimer ce commentaire ?
+                                                                Voulez-vous supprimer ce commentaire ?
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
@@ -215,7 +215,7 @@
                             {% endif %}
                         </div>
                     </div>
-                    {% endif %}#}
-		</div>
+                {% endif %}#}
+		    </div>
         </div>
 	</div>

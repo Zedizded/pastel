@@ -45,7 +45,7 @@ input {
 }
 
 .bodyContent {
-    min-height: 77vh;
+    min-height: 78.8vh;
 }
 
 .mt-0 {
@@ -149,6 +149,22 @@ input {
     width: 16px;
     margin-left: 5px;
     vertical-align: text-bottom;
+}
+
+.modal .btn-danger, .modal .btn-danger:hover {
+    color: white;
+}
+
+#cookieChoiceInfo > a {
+    padding: 4px 7px;
+    background-color: #ded5b7;
+    color: #033e5d;
+    border-radius: 3px;
+}
+
+#cookieChoiceInfo > a:hover {
+    background-color: #bcb395;
+    text-decoration: none;
 }
 
 @media screen and (max-width: 768px) {
@@ -461,9 +477,9 @@ input {
     color: #033e5d;
 }
 
-.comment {
-    margin-top: 20px;
-  }
+.comment a {
+    outline-style: none;
+}
 
 .upload .browse input[type='file']{
     position: absolute;
@@ -556,6 +572,11 @@ th:hover {
     max-width: 150px;
     max-height: 150px;
     display: inline-block;
+}
+
+table button:focus,
+table button:active {
+    outline-style: none;
 }
 
 @media screen and (max-width: 768px) {

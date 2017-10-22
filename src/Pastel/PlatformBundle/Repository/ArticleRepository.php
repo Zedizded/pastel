@@ -10,7 +10,8 @@ namespace Pastel\PlatformBundle\Repository;
  */
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
-	public function classicFind()
+	// Get back and returns all blog's articles
+    public function classicFind()
 	{
 		$qb =  $this->createQueryBuilder('a')->orderBy('a.id', 'DESC');
 		return $qb
@@ -19,11 +20,12 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
 		;
 	}
 
-	public function complexFind($content)
+	// Get back and returns blog's articles matching a search
+    public function complexFind($content)
 	{
 		$qb =  $this->createQueryBuilder('a');
 
-		// transforme les caractère spéciaux (accents etc) en caractère html
+		// Transforms special characters (accents etc) into html
 		$content = htmlentities($content);
 		
 		$words = explode(" ", $content);
