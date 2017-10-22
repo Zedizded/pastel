@@ -44,7 +44,7 @@
                 <div class="myCheckbox col-sm-6 center">
                     {{ form_label(form.pastelMember) }}
                     {{ form_errors(form.pastelMember) }}
-                    {{ form_widget(form.pastelMember) }}
+                    {{ form_widget(form.pastelMember, {'attr': {'onClick': 'display()'}}) }}
                 </div>
 
             </div>
@@ -65,6 +65,11 @@
             </div>
 
             {{ form_end(form) }}
+            
+            <div id="members" hidden>
+				<br /><br /><br />
+				<p class="text-justify" >Vous allez être inscrit comme simple utilisateur le temps de vérifier votre appartenance au Lions Club Castres Pastel. Dès que cette vérification aura eu lieu, votre inscription en tant que membre Pastel sur le site sera effective et vous donnera accès à l'espace de téléchargement de documents des membres. N'hésitez-pas à nous envoyer un petit message via le <a href="{{ path('pastel_platform_contact') }}">formulaire de contact</a> pour nous prévenir de votre inscription.</p>
+			</div>
         </div>
     </div>
 </div>

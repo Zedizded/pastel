@@ -344,7 +344,7 @@ class PlatformController extends Controller
     }
     
     /**
-     * @Route("/Mentions-legales", name="pastel_platform_mentions")
+     * @Route("/mentions-legales", name="pastel_platform_mentions")
      */
 	public function mentionsAction()
 	{
