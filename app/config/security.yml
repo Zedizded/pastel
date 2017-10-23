@@ -31,5 +31,4 @@ security:
 
     access_control:
         - { path: ^/profil, role: ROLE_USER }
-        - { path: ^/observation, role: ROLE_USER }
         - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
