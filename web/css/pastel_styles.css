@@ -579,6 +579,11 @@ table button:active {
     outline-style: none;
 }
 
+.ulError ul{
+    list-style: none;
+    padding: 0;
+}
+
 @media screen and (max-width: 768px) {
     .profilNav li a {
         margin-bottom: 0px;

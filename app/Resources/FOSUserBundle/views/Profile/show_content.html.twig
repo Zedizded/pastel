@@ -158,8 +158,8 @@
                                     {% for user in UsersToValid %}
                                         <tr>
                                             <td>{{ user.username }}</td>
-                                            <td >{{ user.firstName }}</td>
                                             <td>{{ user.lastName }}</td>
+                                            <td>{{ user.firstName }}</td>
                                             <td>
                                                 <a href="{{ path('pastel_platform_userValidation', { 'id': user.id }) }}" title="Valider" class="center col-sm-6"><i class="fa fa-check fa-lg mb-10" aria-hidden="true"></i></a>
                                                 <a href="{{ path('pastel_platform_userReset', { 'id': user.id }) }}" title="Ne pas valider"  class="center col-sm-6"><i class="fa fa-times-circle fa-lg" aria-hidden="true"></i></a>

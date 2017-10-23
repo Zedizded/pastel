@@ -6,7 +6,7 @@
             <div class="col-sm-8 col-sm-offset-2 well myWellPadding">
                 <h5 class="text-center mb-30 blue">Connectez-vous pour accéder à votre profil</h5>
                 {% if error %}
-                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    <div class="text-center mb-30">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
                 <form action="{{ path("fos_user_security_check") }}" method="post">
                 {% if csrf_token %}
