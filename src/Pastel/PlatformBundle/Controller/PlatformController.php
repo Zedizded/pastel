@@ -359,6 +359,29 @@ class PlatformController extends Controller
     }
     
     /**
+     * @Route("/profil/userDelete/{id}", name="pastel_platform_userDelete")
+     */
+    public function userDeleteAction(Request $request, User $user, $id)
+    {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+
+            $em = $this->getDoctrine()->getManager();
+            $userToRemove = $em->getRepository('PastelPlatformBundle:User')->find($id);
+
+            // Removes user with id "$id" from the database
+            $em->remove($userToRemove);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('info', "Suppression de l'utilisateur réussie");
+
+            return $this->redirectToRoute('fos_user_profile_show');
+        }
+
+        return $this->redirectToRoute('pastel_platform_homepage');
+
+    }
+    
+    /**
      * @Route("/mentions-legales", name="pastel_platform_mentions")
      */
 	public function mentionsAction()

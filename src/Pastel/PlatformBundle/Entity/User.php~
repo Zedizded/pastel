@@ -42,12 +42,12 @@ class User extends BaseUser
     private $pastelMember;
     
     /**
-     * @ORM\OneToMany(targetEntity="Pastel\PlatformBundle\Entity\Article", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Pastel\PlatformBundle\Entity\Article", mappedBy="user", cascade={"remove"})
      */
     private $articles;
  
     /**
-     * @ORM\OneToMany(targetEntity="Pastel\PlatformBundle\Entity\Comment", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Pastel\PlatformBundle\Entity\Comment", mappedBy="user", cascade={"remove"})
      */
     private $comments;    
     

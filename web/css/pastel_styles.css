@@ -156,6 +156,10 @@ input {
     vertical-align: text-bottom;
 }
 
+.modal {
+    z-index:2001;
+}
+
 .modal .btn-danger, .modal .btn-danger:hover {
     color: white;
 }
@@ -528,7 +532,7 @@ input {
     border: 1px solid #ded5b7;
     border-bottom: 0px;
     box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
-    z-index: 2000;
+    z-index: 20;
 }
 
 .profilNav .active a {
@@ -599,6 +603,13 @@ table button:active {
     }
     .profilNav .active a {
         background: #ded5b7 !important;
+    }
+}
+
+@media screen and (max-width: 490px) {
+    #member table {
+        font-size: 0.65em;
+        letter-spacing: -0.7px;
     }
 }
 
