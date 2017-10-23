@@ -96,6 +96,11 @@ input {
     margin-bottom: 100px;
 }
 
+.p-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 .blue {
     color: #033e5d;
 }
@@ -181,6 +186,7 @@ input {
     #rc-imageselect, .g-recaptcha {
         transform:scale(0.8);
         -webkit-transform:scale(0.8);
+        margin-left: -40px;
     } 
 }
 
@@ -349,6 +355,9 @@ input {
     color: #001c2d;
 }
 
+.justifyP p {
+    text-align: justify;
+}
 @media screen and (max-width: 1200px){
     .modifLi {
         text-indent: -15px;
@@ -654,6 +663,7 @@ table button:active {
     .oups p {
         font-size: 1.8em;
     }
+}
 
 @media screen and (max-width: 490px) {
     #error {

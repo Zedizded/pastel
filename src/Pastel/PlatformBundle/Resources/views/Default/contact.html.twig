@@ -21,36 +21,41 @@
         <div class="mt-50">
             <h2 class="text-center mb-50">Formulaire de contact</h2>
 
-            <div class="col-sm-8 col-sm-offset-2 well myWellPadding">
+            <div class="col-sm-8 col-sm-offset-2 well myWell">
                 <p class="text-center mt-10 mb-50">Vous pouvez nous contacter en nous laissant un message via le formulaire ci-dessous.<br>Nous vous répondrons dans les meilleurs délais.</p>
 
                     {{ form_start(form) }}
                     {{ form_errors(form) }}
 
-                    <div class="form-group col-sm-8 col-sm-offset-2">
+                    <div class="form-group col-sm-10 col-sm-offset-1 p-0">
                         <label for="firstName">Prénom :</label>
                         {{ form_errors(form.firstName) }}
                         {{ form_widget(form.firstName, {'attr': {'class': 'form-control' }}) }}
                     </div>
 
-                    <div class="form-group col-sm-8 col-sm-offset-2">
+                    <div class="form-group col-sm-10 col-sm-offset-1 p-0">
                         <label for="firstName">Nom :</label>
                         {{ form_errors(form.lastName) }}
                         {{ form_widget(form.lastName, {'attr': {'class': 'form-control' }}) }}
                     </div>
 
-                    <div class="form-group col-sm-8 col-sm-offset-2">
+                    <div class="form-group col-sm-10 col-sm-offset-1 p-0">
                         <label for="email">Adresse email :</label>
                         {{ form_errors(form.email) }}
                         {{ form_widget(form.email, {'attr': {'class': 'form-control' }}) }}
                     </div>
 
-                    <div class="form-group col-sm-8 col-sm-offset-2">
+                    <div class="form-group col-sm-10 col-sm-offset-1 p-0">
                         <label for="message">Message :</label>
                         {{ form_errors(form.message) }}
                         {{ form_widget(form.message, {'attr': {'class': 'form-control',
-                            'rows': '10'
+                            'rows': '8'
                         }}) }}
+                    </div>
+                    
+                    <div class="text-center">
+                        {{ form_errors(form.recaptcha) }}
+                        {{ form_widget(form.recaptcha) }}
                     </div>
 
                     <div class="col-sm-12 text-center mt-20 mb-10">
