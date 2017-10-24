@@ -23,16 +23,18 @@ class ProfileController extends BaseController
         // Get back and returns all data associated with an user
         $articles = $em->getRepository('PastelPlatformBundle:Article')->findAll();
         $comments = $em->getRepository('PastelPlatformBundle:Comment')->findBy(array('warning' => '1'));
-        $UsersToValid = $em->getRepository('PastelPlatformBundle:User')->findBy(array('pastelMember' => 1));
+        $usersToValid = $em->getRepository('PastelPlatformBundle:User')->findBy(array('pastelMember' => 1));
         $users = $em->getRepository('PastelPlatformBundle:User')->findAll();
+        $addFiles = $em->getRepository('PastelPlatformBundle:AddFile')->findAll();
         
 
         return $this->render('@FOSUser/Profile/show.html.twig', array(
             'user' => $user,
             'articles' => $articles,
             'comments' => $comments,
-            'UsersToValid' => $UsersToValid,
-            'users' => $users
+            'usersToValid' => $usersToValid,
+            'users' => $users,
+            'addFiles' => $addFiles
         ));
     }
 

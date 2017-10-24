@@ -494,7 +494,8 @@ input {
     outline-style: none;
 }
 
-.upload .browse input[type='file']{
+.upload .browse input[type='file'],
+#pastel_platformbundle_addfile_file {
     position: absolute;
     margin-top: 3px;
     margin-left: 3px;

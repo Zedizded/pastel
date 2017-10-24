@@ -14,6 +14,8 @@ use Pastel\PlatformBundle\Form\ArticleType;
 use Pastel\PlatformBundle\Form\CommentType;
 use Pastel\PlatformBundle\Entity\Search;
 use Pastel\PlatformBundle\Form\SearchType;
+use Pastel\PlatformBundle\Entity\AddFile;
+use Pastel\PlatformBundle\Form\AddFileType;
 use Swift_Message;
 
 class PlatformController extends Controller
@@ -373,6 +375,62 @@ class PlatformController extends Controller
             $em->flush();
 
             $request->getSession()->getFlashBag()->add('info', "Suppression de l'utilisateur réussie");
+
+            return $this->redirectToRoute('fos_user_profile_show');
+        }
+
+        return $this->redirectToRoute('pastel_platform_homepage');
+
+    }
+    
+	/**
+     * @Route("/profil/addFile", name="pastel_platform_addfile")
+     */
+    public function addFileAction(Request $request)
+	{
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+
+            // Creation of a new file to add
+            $addFile = new AddFile();
+			$form = $this->get('form.factory')->create(AddFileType::class, $addFile);
+            
+            if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+				// Records the new file in the database
+                $em = $this->getDoctrine()->getManager();
+				$em->persist($addFile);
+                
+				$em->flush();
+                
+                $request->getSession()->getFlashBag()->add('info', 'Votre fichier a bien été enregistré.');
+                
+                $addFile = new AddFile();
+                $form = $this->get('form.factory')->create(AddFileType::class, $addFile);
+			}
+            
+            return $this->render('PastelPlatformBundle:Default:addfile.html.twig', array(
+				'form' => $form->createView()
+            ));
+		}
+
+		return $this->redirectToRoute('fos_user_profile_show');
+	}
+    
+    /**
+     * @Route("/profil/fileDelete/{id}", name="pastel_platform_fileDelete")
+     */
+    public function fileDeleteAction(Request $request, AddFile $addFile, $id)
+    {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+
+            $em = $this->getDoctrine()->getManager();
+            $fileToRemove = $em->getRepository('PastelPlatformBundle:AddFile')->find($id);
+
+            // Removes file with id "$id" from the database
+            $em->remove($fileToRemove);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('info', "Suppression du fichier réussie");
 
             return $this->redirectToRoute('fos_user_profile_show');
         }

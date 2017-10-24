@@ -1,0 +1,56 @@
+{# src/Pastel/PlatformBundle/Resources/views/Default/addfile.html.twig #}
+{% extends "PastelPlatformBundle::layout.html.twig" %}
+
+{% set profilePage = true %}
+
+{% block title %}{{ parent() }} - Ajouter un fichier{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        {% for flashMessage in app.session.flashbag.get('info') %}
+            <div class="row alert alert-success alert-dismissible mt-50 mb-30">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="container bodyContent mb-30">
+        <div class="mt-50">
+            <h2 class="text-center mb-50">Ajouter un nouveau fichier</h2>
+            <div class="col-sm-8 col-sm-offset-2 well myWell">
+
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+
+                <div class="form-group">
+                    <div class="upload text-center">
+                        <p class="mb-30">{{ form_label(form.file) }}</p>
+                        <p>{{ form_widget(form.file, {'attr': {'class': 'browse'}}) }}</p>
+                        <i type="button" class="btn fileSelectButton fa fa-upload fa-4x mb-20" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <input type="submit" value="Enregistrer" class="btn btnBlue">
+                </div>
+
+                {{ form_rest(form) }}
+                {{ form_end(form) }}
+
+            </div>
+            
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="col-sm-12 text-center mt-20 mb-10">
+                    <a href="{{ path('fos_user_profile_show') }}" class="btn btnBlue">Retour au profil</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+  
+{% endblock %}

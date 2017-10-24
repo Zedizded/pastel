@@ -24,9 +24,6 @@
         <div class="mt-50">
             <h2 class="text-center mb-50">Nouvel article</h2>
             <div class="blogArticle">
-                {% for message in app.session.flashbag.get('info') %}
-                    <p>{{ message }}</p>
-                {% endfor %}    
 
                 {{ form_start(form) }}
                 {{ form_errors(form) }}
@@ -53,7 +50,7 @@
                         <span type="button" class="btn fileSelectButton glyphicon glyphicon-camera"></span>
                     </div>
                 </div>
-                <div class="right">
+                <div>
                     <input type="submit" value="Enregistrer" class="btn btnBlue">
                 </div>
 
