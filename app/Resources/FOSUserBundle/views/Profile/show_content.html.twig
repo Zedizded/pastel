@@ -299,7 +299,7 @@
                                         <tr>
                                             <td class="col-sm-10"><span class="glyphicon glyphicon-file"></span> {{ addFile.name }}</td>
                                             <td class="col-sm-2">
-                                                <a href="{{ path('pastel_platform_addfile', { 'id': addFile.id }) }}" title="Télécharger" class="col-sm-4 text-center" download="{{ addFile.name }}" ><i class="fa fa-download fa-lg mb-10" aria-hidden="true"></i></a>
+                                                <a href="{{ asset('uploads/addFiles/' ~ addFile.path) }}" title="Télécharger" class="col-sm-4 text-center" download="{{ addFile.name }}" ><i class="fa fa-download fa-lg mb-10" aria-hidden="true"></i></a>
                                             </td>
                                         </tr>
 
